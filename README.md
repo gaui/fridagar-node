@@ -8,18 +8,24 @@ Node module that scrapes Icelandic holidays from [dagatal.is](http://dagatal.is)
 var fridagar = require('./fridagar');
 
 // Get holidays and other important days for June 2016
-fridagar.getAllDays(2016, 6, function(data) {
+fridagar.getAllDays(2016, 6).then(function(data) {
   // Use data
+}, function(err) {
+  throw new Error(err);
 });
 
 // Get only holidays for June 2016
-fridagar.getHolidays(2016, 6, function(data) {
+fridagar.getHolidays(2016, 6).then(function(data) {
   // Use data
+}, function(err) {
+    throw new Error(err);
 });
 
 // Get only other important days for June 2016
-fridagar.getOtherDays(2016, 6, function(data) {
+fridagar.getOtherDays(2016, 6).then(function(data) {
   // Use data
+}, function(err) {
+    throw new Error(err);
 });
 ```
 

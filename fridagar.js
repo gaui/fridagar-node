@@ -1,4 +1,5 @@
-var fetch = require('fetch');
+var fetch = require('node-fetch');
+var Promise = require('promise');
 var cheerio = require('cheerio');
 var $;
 
@@ -11,44 +12,39 @@ module.exports = {
    * Get holidays (non-working days)
    * @param  {Number}   year     Year to get results for
    * @param  {Number}   month    Month to get results for
-   * @param  {Function} cb       Callback function
-   * @return {Object}            Object with year, month and days array
+   * @return {Promise}           Promise that resolves to an object with year, month and days array
    */
-  getHolidays: function(year, month, cb) {
-    run([1], year, month, cb);
+  getHolidays: function(year, month) {
+    return getData([1], year, month);
   },
   /**
    * Get other days (important but working days)
    * @param  {Number}   year     Year to get results for
    * @param  {Number}   month    Month to get results for
-   * @param  {Function} cb       Callback function
-   * @return {Object}            Object with year, month and days array
+   * @return {Promise}           Promise that resolves to an object with year, month and days array
    */
-  getOtherDays: function(year, month, cb) {
-    run([2], year, month, cb);
+  getOtherDays: function(year, month) {
+    return getData([2], year, month);
   },
   /**
    * Get both holidays and other days
    * @param  {Number}   year     Year to get results for
    * @param  {Number}   month    Month to get results for
-   * @param  {Function} cb       Callback function
-   * @return {Object}            Object with year, month and days array
+   * @return {Promise}           Promise that resolves to an object with year, month and days array
    */
-  getAllDays: function(year, month, cb) {
-    run([1,2], year, month, cb);
+  getAllDays: function(year, month) {
+    return getData([1,2], year, month);
   }
 };
 
 /**
- * Run method for the module that does all the work.
  * Gets HTTP response from URL, parses the results
- * and calls a callback with the result data.
+ * and returns a promise.
  * @param  {Array}    type     Array with filter types
  * @param  {Number}   year     Year to get results for
  * @param  {Number}   month    Month to get results for
- * @param  {Function} cb       Callback function
  */
-function run(type, year, month, cb) {
+function getData(type, year, month) {
   year = year.toString();
   month = month < 10 && month.toString().substr(0,1) !== '0' ? '0'+month : month.toString();
 
@@ -56,40 +52,42 @@ function run(type, year, month, cb) {
             '&theme_id=6&calendar=1&select&date=', year, '-', month,
             '&many_sp_calendar=1&cur_page_url=http://dagatal.is/&cat_id&widget=0'].join('');
 
-  // Call async HTTP fetch method with a callback function
-  fetch.fetchUrl(url, function(error, meta, body) {
-    $ = cheerio.load(body.toString());
-    var resultArray = [];
+  // Call async HTTP fetch method and return a promise
+  var promise = new Promise(function(resolve, reject) {
+    fetch(url).then(function(res) {
+      return res.text();
+    }).then(function(body) {
+      $ = cheerio.load(body.toString());
+      var resultArray = [];
 
-    if(!Array.isArray(type)) {
-      throw new Error('Invalid type');
-    } else {
-      // Get all DOM nodes that contain some kind of an event
-      var eventNodes = $('td.cala_day');
+      if(!Array.isArray(type)) {
+        reject('Invalid type');
+      } else {
+        // Get all DOM nodes that contain some kind of an event
+        var eventNodes = $('td.cala_day');
 
-      // Go through each filter type and call the filterType function
-      // with the result array to append the results to
-      for(var i = 0; i < type.length; i++) {
-        if(typeof filterType[type[i]] !== 'function') {
-          throw new Error('Invalid type');
+        // Go through each filter type and call the filterType function
+        // with the result array to append the results to
+        for(var i = 0; i < type.length; i++) {
+          if(typeof filterType[type[i]] !== 'function') {
+            reject('Invalid type');
+          }
+
+          filterType[type[i]](eventNodes, resultArray);
         }
-
-        filterType[type[i]](eventNodes, resultArray);
       }
-    }
 
-    var results = {
-      year: parseInt(year),
-      month: parseInt(month),
-      days: resultArray
-    };
+      var results = {
+        year: parseInt(year),
+        month: parseInt(month),
+        days: resultArray
+      };
 
-    if(typeof cb === 'function') {
-      cb(results);
-    } else {
-      throw new Error('Invalid callback');
-    }
+      resolve(results);
+    });
   });
+
+  return promise;
 }
 
 /**
