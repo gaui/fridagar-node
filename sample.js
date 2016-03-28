@@ -1,3 +1,4 @@
+// Use 'fridagar' if you installed via NPM
 var fridagar = require('./fridagar');
 
 var today = new Date();

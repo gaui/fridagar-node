@@ -2,9 +2,16 @@
 
 Node module that scrapes Icelandic holidays from [dagatal.is](http://dagatal.is)
 
+## Installation
+
+```
+npm install fridagar
+```
+
 ## Usage
 
 ```javascript
+// Use 'fridagar' if you installed via NPM
 var fridagar = require('./fridagar');
 
 // Get holidays and other important days for June 2016
@@ -59,3 +66,13 @@ fridagar.getOtherDays(2016, 6).then(function(data) {
   ]
 }
 ```
+
+## Changelog
+
+### 2.0.0
+
+- Use promises instead of callbacks.
+
+### 1.0.0
+
+- Initial release.
