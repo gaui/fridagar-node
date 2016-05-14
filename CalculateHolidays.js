@@ -1,4 +1,3 @@
-exports.easter = easter;
 function easter(year) {
   var a = year % 19;
   var b = Math.floor(year / 100);
