@@ -19,7 +19,7 @@ function easter(year) {
 
 function bondadagur(year) {
   var date = new Date(year, 0, 19);
-  while (date.getDay() !== 5) {
+  while(date.getDay() !== 5) {
     date.setDate(date.getDate() + 1);
   }
 
@@ -28,7 +28,7 @@ function bondadagur(year) {
 
 function sumardagurinnFyrsti(year) {
   var date = new Date(year, 3, 19);
-  while (date.getDay() !== 4) {
+  while(date.getDay() !== 4) {
     date.setDate(date.getDate() + 1);
   }
 
@@ -37,38 +37,43 @@ function sumardagurinnFyrsti(year) {
 
 function fridagurVerslunarmanna(year) {
   var date = new Date(year, 7, 1);
-  while (date.getDay() !== 1) {
+  while(date.getDay() !== 1) {
     date.setDate(date.getDate() + 1);
   }
+
   return date;
 }
 
 function solstice(year, season) {
   var interval = 1000 * (56.5 + 47 * 60 + 5 * 3600 + 365 * 86400);
 
-  if (season == 'summer'){
+  if(season === 'summer') {
     var date = new Date(2016, 5, 20, 22, 34);
-  } else if (season == 'winter'){
+  } else if(season === 'winter') {
     var date = new Date(2016, 11, 21, 10, 44);
   }
 
-  while (date.getFullYear() < year) {
+  while(date.getFullYear() < year) {
     date.setTime(date.getTime() + interval);
   }
-  while (date.getFullYear() > year) {
+
+  while(date.getFullYear() > year) {
     date.setTime(date.getTime() - interval);
   }
+
   return date;
 }
 
 exports.holidays = holidays;
+
 function holidays(year) {
   var easterSunday = easter(year);
   var day = 86400000;
+
   var holidays = [
     {
       date: new Date(year, 0, 1),
-      description: 'Nýjársdagur',
+      description: 'Nýársdagur',
       holiday: true
     },
     {
@@ -138,12 +143,12 @@ function holidays(year) {
     },
     {
       date: new Date(easterSunday.getTime() + (50 * day)),
-      description: 'Annar í hvítasunnu',
+      description: 'Annar í Hvítasunnu',
       holiday: true
     },
     {
       date: new Date(year, 4, 1),
-      description: 'Verkalíðsdagurinn',
+      description: 'Verkalýðsdagurinn',
       holiday: true
     },
     {
@@ -153,7 +158,7 @@ function holidays(year) {
     },
     {
       date: solstice(year, 'summer'),
-      description: 'Sumar sólstöður',
+      description: 'Sumarsólstöður',
       holiday: false
     },
     {
@@ -173,7 +178,7 @@ function holidays(year) {
     },
     {
       date: solstice(year, 'winter'),
-      description: 'Vetrar sólstöður',
+      description: 'Vetrarsólstöður',
       holiday: false
     },
     {
@@ -193,7 +198,7 @@ function holidays(year) {
     },
     {
       date: new Date(year, 11, 26),
-      description: 'Annar í jólum',
+      description: 'Annar í Jólum',
       holiday: true
     },
     {
