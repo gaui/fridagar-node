@@ -1,6 +1,6 @@
 # Frídagar
 
-Node module that scrapes Icelandic holidays from [dagatal.is](http://dagatal.is)
+Node module that returns Icelandic holidays and other special days
 
 ## Installation
 
@@ -15,59 +15,43 @@ npm install fridagar
 var fridagar = require('./fridagar');
 
 // Get holidays and other important days for June 2016
-fridagar.getAllDays(2016, 6).then(function(data) {
-  // Use data
-}, function(err) {
-  throw new Error(err);
-});
+var allDays = fridagar.getAllDays(2016, 6);
 
 // Get only holidays for June 2016
-fridagar.getHolidays(2016, 6).then(function(data) {
-  // Use data
-}, function(err) {
-    throw new Error(err);
-});
+var holidays = fridagar.getHolidays(2016, 6);
 
 // Get only other important days for June 2016
-fridagar.getOtherDays(2016, 6).then(function(data) {
-  // Use data
-}, function(err) {
-    throw new Error(err);
-});
+var otherDays = fridagar.getOtherDays(2016, 6);
 ```
 
 ## Sample output
 
 ```javascript
-{
-  "year": 2016,
-  "month": 6,
-  "days": [
-    {
-      "day": 5,
-      "description": "Sjómannadagurinn",
-      "holiday": true
-    },
-    {
-      "day": 17,
-      "description": "Lýðveldisdagurinn",
-      "holiday": true
-    },
-    {
-      "day": 20,
-      "description": "Sumarsólstöður",
-      "holiday": false
-    },
-    {
-      "day": 24,
-      "description": "Jónsmessa",
-      "holiday": false
-    }
-  ]
-}
+[
+  {
+    "date": "2016-06-17T00:00:00.000Z",
+    "description": "Þjóðhátíðardagur Íslendinga",
+    "holiday": true
+  },
+  {
+    "date": "2016-06-20T22:34:00.000Z",
+    "description": "Sumarsólstöður",
+    "holiday": false
+  },
+  {
+    "date": "2016-06-24T00:00:00.000Z",
+    "description": "Jónsmessa",
+    "holiday": false
+  }
+]
 ```
 
 ## Changelog
+
+### 3.0.0
+
+- Calculate holidays instead of scraping them.
+- Removed promises (breaking changes).
 
 ### 2.0.0
 

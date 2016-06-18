@@ -1,23 +1,24 @@
 {
   "name": "fridagar",
-  "version": "2.0.0",
-  "description": "Icelandic holidays from dagatal.is",
+  "version": "3.0.0",
+  "description": "Returns Icelandic holidays and other special days",
   "main": "fridagar.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
     "name": "Guðjón Jónsson",
-    "url": "http://www.gaui.is"
+    "url": "https://github.com/gaui"
   },
+  "contributors": [
+    {
+      "name": "Bjarki Gunnarsson",
+      "url": "https://github.com/bjarkig82"
+    }
+  ],
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/gaui/fridagar-node"
-  },
-  "dependencies": {
-    "cheerio": "^0.20.0",
-    "node-fetch": "^1.4.1",
-    "promise": "^7.1.1"
   }
 }
