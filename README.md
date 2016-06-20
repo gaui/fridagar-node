@@ -12,7 +12,7 @@ npm install fridagar
 
 ```javascript
 // Use 'fridagar' if you installed via NPM
-var fridagar = require('./fridagar');
+var fridagar = require('fridagar');
 
 // Get holidays and other important days for June 2016
 var allDays = fridagar.getAllDays(2016, 6);
