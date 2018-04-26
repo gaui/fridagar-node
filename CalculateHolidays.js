@@ -170,6 +170,11 @@ function holidays(year) {
       holiday: true
     },
     {
+      date: new Date(year, 9, 31),
+      description: 'Hrekkjavaka',
+      holiday: false
+    },
+    {
       date: new Date(year, 11, 1),
       description: 'Fullveldisdagurinn',
       holiday: false
