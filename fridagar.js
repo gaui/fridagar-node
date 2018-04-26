@@ -103,7 +103,7 @@ function workdaysFromDate(days, date) {
     date = new Date();
   }
 
-  holidays = getHolidays(date.getFullYear());
+  var holidays = getHolidays(date.getFullYear());
 
   while(days > 0) {
     date.setDate(date.getDate() + 1);

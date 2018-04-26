@@ -47,11 +47,9 @@ function fridagurVerslunarmanna(year) {
 function solstice(year, season) {
   var interval = 1000 * (56.5 + 47 * 60 + 5 * 3600 + 365 * 86400);
 
-  if(season === 'summer') {
-    var date = new Date(2016, 5, 20, 22, 34);
-  } else if(season === 'winter') {
-    var date = new Date(2016, 11, 21, 10, 44);
-  }
+  var date = (season === 'winter') ?
+      new Date(2016, 11, 21, 10, 44):
+      new Date(2016, 5, 20, 22, 34); // Default to 'summer'
 
   while(date.getFullYear() < year) {
     date.setTime(date.getTime() + interval);
