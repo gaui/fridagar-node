@@ -187,7 +187,8 @@ function holidays(year) {
     {
       date: new Date(year, 11, 24),
       description: 'Aðfangadagur',
-      holiday: true
+      holiday: true,
+      halfDay: true
     },
     {
       date: new Date(year, 11, 25),
@@ -202,9 +203,11 @@ function holidays(year) {
     {
       date: new Date(year, 11, 31),
       description: 'Gamlársdagur',
-      holiday: true
+      holiday: true,
+      halfDay: true
     },
   ];
+
 
   return holidays;
 }
