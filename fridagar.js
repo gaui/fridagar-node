@@ -49,7 +49,7 @@ module.exports = {
 
 function getHolidays(year, month) {
   if(!year) {
-    throw new Error('Year must be defined');
+    year = (new Date()).getFullYear();
   }
 
   var holidays = CalculateHolidays.holidays(year).filter(function(day) {
@@ -67,7 +67,7 @@ function getHolidays(year, month) {
 
 function getOtherDays(year, month) {
   if(!year) {
-    throw new Error('Year must be defined');
+    year = (new Date()).getFullYear();
   }
 
   var otherDays = CalculateHolidays.holidays(year).filter(function(day) {
@@ -85,7 +85,7 @@ function getOtherDays(year, month) {
 
 function getAllDays(year, month) {
   if(!year) {
-    throw new Error('Year must be defined');
+    year = (new Date()).getFullYear();
   }
 
   var days = CalculateHolidays.holidays(year);
