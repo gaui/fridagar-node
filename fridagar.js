@@ -99,9 +99,7 @@ function getAllDays(year, month) {
 }
 
 function workdaysFromDate(days, date) {
-  if(!date) {
-    date = new Date();
-  }
+  date = date ? new Date(date) : new Date();
 
   var holidays = getHolidays(date.getFullYear());
 
