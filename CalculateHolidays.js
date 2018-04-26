@@ -182,7 +182,7 @@ function holidays(year) {
     {
       date: new Date(year, 11, 23),
       description: 'Þorláksmessa',
-      holiday: true
+      holiday: false
     },
     {
       date: new Date(year, 11, 24),
