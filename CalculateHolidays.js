@@ -17,31 +17,22 @@ function easter(year) {
   return new Date(year, easterMonth-1, easterDay);
 }
 
-function bondadagur(year) {
-  var date = new Date(year, 0, 19);
-  while(date.getDay() !== 5) {
-    date.setDate(date.getDate() + 1);
-  }
-
+function findNextWeekDay(year, month, day, targetWDay) {
+  var date = new Date(year, month, day);
+  date.setDate( date.getDate() + ((targetWDay - date.getDay()) + 7) % 7 );
   return date;
+}
+
+function bondadagur(year) {
+  return findNextWeekDay(year, 0, 19, 5);
 }
 
 function sumardagurinnFyrsti(year) {
-  var date = new Date(year, 3, 19);
-  while(date.getDay() !== 4) {
-    date.setDate(date.getDate() + 1);
-  }
-
-  return date;
+  return findNextWeekDay(year, 3, 19, 4);
 }
 
 function fridagurVerslunarmanna(year) {
-  var date = new Date(year, 7, 1);
-  while(date.getDay() !== 1) {
-    date.setDate(date.getDate() + 1);
-  }
-
-  return date;
+  return findNextWeekDay(year, 7, 1, 1);
 }
 
 function solstice(year, season) {
