@@ -101,18 +101,22 @@ function getAllDays(year, month) {
 
 function workdaysFromDate(days, date) {
   date = date ? new Date(date) : new Date();
+  date = new Date( date.getFullYear(), date.getMonth(), date.getDate() );
 
   var holidays = getHolidays(date.getFullYear());
 
   while(days > 0) {
     date.setDate(date.getDate() + 1);
+    var wDay = date.getDay();
+    var dateTime = date.getTime();
 
-    var holiday = holidays.filter(function(day) {
-      return day.date.toDateString() === date.toDateString();
-    });
-
-    if (holiday.length === 0 && [0,6].indexOf(date.getDay()) === -1) {
-      days -= 1;
+    if ( wDay !== 0 && wDay !== 6 ) {
+      var holiday = holidays.filter(function(day) {
+        return day.date.getTime() === dateTime;
+      });
+      if (holiday.length === 0) {
+        days -= 1;
+      }
     }
   }
 
