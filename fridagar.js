@@ -8,7 +8,7 @@ module.exports = {
   /**
    * Get holidays (non-working days)
    * @param  {Number}   year     Year to get results for
-   * @param  {Number}   month    Month to get results for
+   * @param  {Number}   [month]    Month to get results for
    * @return Date array
    */
   getHolidays: function(year, month) {
@@ -18,7 +18,7 @@ module.exports = {
   /**
    * Get other days (important but working days)
    * @param  {Number}   year     Year to get results for
-   * @param  {Number}   month    Month to get results for
+   * @param  {Number}   [month]    Month to get results for
    * @return Date array
    */
   getOtherDays: function(year, month) {
@@ -28,7 +28,7 @@ module.exports = {
   /**
    * Get both holidays and other days
    * @param  {Number}   year     Year to get results for
-   * @param  {Number}   month    Month to get results for
+   * @param  {Number}   [month]    Month to get results for
    * @return Date array
    */
   getAllDays: function(year, month) {
@@ -38,7 +38,8 @@ module.exports = {
   /**
    * Get the date afer a certain amount of work days from a Date Object
    * Non holidays and non weekends.
-   * @param {Number} days
+   * @param  {Number}   days
+   * @param  {Date}     [date]    Date to start counting from
    * @return Date
    */
   workdaysFromDate: function(days, date) {
@@ -48,7 +49,7 @@ module.exports = {
 
 function getHolidays(year, month) {
   if(!year) {
-    throw new Error('Year must be defined');
+    year = (new Date()).getFullYear();
   }
 
   var holidays = CalculateHolidays.holidays(year).filter(function(day) {
@@ -66,7 +67,7 @@ function getHolidays(year, month) {
 
 function getOtherDays(year, month) {
   if(!year) {
-    throw new Error('Year must be defined');
+    year = (new Date()).getFullYear();
   }
 
   var otherDays = CalculateHolidays.holidays(year).filter(function(day) {
@@ -84,7 +85,7 @@ function getOtherDays(year, month) {
 
 function getAllDays(year, month) {
   if(!year) {
-    throw new Error('Year must be defined');
+    year = (new Date()).getFullYear();
   }
 
   var days = CalculateHolidays.holidays(year);
@@ -99,21 +100,23 @@ function getAllDays(year, month) {
 }
 
 function workdaysFromDate(days, date) {
-  if(!date) {
-    date = new Date();
-  }
+  date = date ? new Date(date) : new Date();
+  date = new Date( date.getFullYear(), date.getMonth(), date.getDate() );
 
-  holidays = getHolidays(date.getFullYear());
+  var holidays = getHolidays(date.getFullYear());
 
   while(days > 0) {
     date.setDate(date.getDate() + 1);
+    var wDay = date.getDay();
+    var dateTime = date.getTime();
 
-    var holiday = holidays.filter(function(day) {
-      return day.date.toDateString() === date.toDateString();
-    });
-
-    if (holiday.length === 0 && [0,6].indexOf(date.getDay()) === -1) {
-      days -= 1;
+    if ( wDay !== 0 && wDay !== 6 ) {
+      var holiday = holidays.filter(function(day) {
+        return day.date.getTime() === dateTime;
+      });
+      if (holiday.length === 0) {
+        days -= 1;
+      }
     }
   }
 

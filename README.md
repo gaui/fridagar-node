@@ -48,6 +48,15 @@ var otherDays = fridagar.getOtherDays(2016, 6);
 
 ## Changelog
 
+### 3.1.0 (upcoming)
+
+- Add "Hrekkjavaka"
+- Demote "Þorláksmessa" to notable day status
+- Add flagging of "half-day" holidays
+- Use current day/year as default for all methods
+- Improve performance
+- Minor bugfixes
+
 ### 3.0.0
 
 - Calculate holidays instead of scraping them.

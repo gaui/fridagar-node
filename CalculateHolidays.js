@@ -17,41 +17,30 @@ function easter(year) {
   return new Date(year, easterMonth-1, easterDay);
 }
 
-function bondadagur(year) {
-  var date = new Date(year, 0, 19);
-  while(date.getDay() !== 5) {
-    date.setDate(date.getDate() + 1);
-  }
-
+function findNextWeekDay(year, month, day, targetWDay) {
+  var date = new Date(year, month, day);
+  date.setDate( date.getDate() + ((targetWDay - date.getDay()) + 7) % 7 );
   return date;
+}
+
+function bondadagur(year) {
+  return findNextWeekDay(year, 0, 19, 5);
 }
 
 function sumardagurinnFyrsti(year) {
-  var date = new Date(year, 3, 19);
-  while(date.getDay() !== 4) {
-    date.setDate(date.getDate() + 1);
-  }
-
-  return date;
+  return findNextWeekDay(year, 3, 19, 4);
 }
 
 function fridagurVerslunarmanna(year) {
-  var date = new Date(year, 7, 1);
-  while(date.getDay() !== 1) {
-    date.setDate(date.getDate() + 1);
-  }
-
-  return date;
+  return findNextWeekDay(year, 7, 1, 1);
 }
 
 function solstice(year, season) {
   var interval = 1000 * (56.5 + 47 * 60 + 5 * 3600 + 365 * 86400);
 
-  if(season === 'summer') {
-    var date = new Date(2016, 5, 20, 22, 34);
-  } else if(season === 'winter') {
-    var date = new Date(2016, 11, 21, 10, 44);
-  }
+  var date = (season === 'winter') ?
+      new Date(2016, 11, 21, 10, 44):
+      new Date(2016, 5, 20, 22, 34); // Default to 'summer'
 
   while(date.getFullYear() < year) {
     date.setTime(date.getTime() + interval);
@@ -172,6 +161,11 @@ function holidays(year) {
       holiday: true
     },
     {
+      date: new Date(year, 9, 31),
+      description: 'Hrekkjavaka',
+      holiday: false
+    },
+    {
       date: new Date(year, 11, 1),
       description: 'Fullveldisdagurinn',
       holiday: false
@@ -184,12 +178,13 @@ function holidays(year) {
     {
       date: new Date(year, 11, 23),
       description: 'Þorláksmessa',
-      holiday: true
+      holiday: false
     },
     {
       date: new Date(year, 11, 24),
       description: 'Aðfangadagur',
-      holiday: true
+      holiday: true,
+      halfDay: true
     },
     {
       date: new Date(year, 11, 25),
@@ -204,9 +199,11 @@ function holidays(year) {
     {
       date: new Date(year, 11, 31),
       description: 'Gamlársdagur',
-      holiday: true
+      holiday: true,
+      halfDay: true
     },
   ];
+
 
   return holidays;
 }
