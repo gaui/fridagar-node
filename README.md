@@ -27,22 +27,25 @@ var otherDays = fridagar.getOtherDays(2016, 6);
 ## Sample output
 
 ```javascript
-[
+const notableDays2018 = fridagar.getAllDays(2018 );
+JSON.stringify(notableDays2018) === [
+  ...
   {
-    "date": "2016-06-17T00:00:00.000Z",
-    "description": "Þjóðhátíðardagur Íslendinga",
+    "date": "2018-12-23T00:00:00.000Z",
+    "description": "Þorláksmessa",
+  },
+  {
+    "date": "2018-12-24T00:00:00.000Z",
+    "description": "Aðfangadagur",
+    "halfDay": true,
     "holiday": true
   },
   {
-    "date": "2016-06-20T22:34:00.000Z",
-    "description": "Sumarsólstöður",
-    "holiday": false
+    "date": "2018-12-25T00:00:00.000Z",
+    "description": "Jóladagur",
+    "holiday": true
   },
-  {
-    "date": "2016-06-24T00:00:00.000Z",
-    "description": "Jónsmessa",
-    "holiday": false
-  }
+  ...
 ]
 ```
 
