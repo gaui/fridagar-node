@@ -58,6 +58,11 @@ JSON.stringify(notableDays2018) === [
 - …
 
 
+### 3.1.1
+_20-05-xx_
+- Fix documentation
+
+
 ### 3.1.0
 _20-04-28_
 - Add "Hrekkjavaka"
