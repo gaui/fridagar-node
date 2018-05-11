@@ -59,7 +59,7 @@ JSON.stringify(notableDays2018) === [
 
 
 ### 3.1.1
-_2018-05-xx_
+_2018-05-11_
 - Fix documentation
 
 
