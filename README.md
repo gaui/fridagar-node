@@ -54,8 +54,8 @@ JSON.stringify(notableDays2018) === [
 ## Changelog
 
 ### Upcoming...
-<!-- Add new items here -->
-- …
+- <!-- Add new items here -->
+- Add TypeScript type definitions
 
 
 ### 3.1.1
