@@ -100,6 +100,9 @@ function getAllDays(year, month) {
 }
 
 function workdaysFromDate(days, date) {
+  if (days < 1) {
+    return date;
+  }
   date = date ? new Date(date) : new Date();
   date = new Date( date.getFullYear(), date.getMonth(), date.getDate() );
 
