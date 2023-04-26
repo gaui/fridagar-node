@@ -8,7 +8,7 @@ module.exports = {
   /**
    * Get holidays (non-working days)
    * @param  {Number}   year     Year to get results for
-   * @param  {Number}   [month]    Month to get results for
+   * @param  {Number}   [month]    Month to get results for (1-12)
    * @return Date array
    */
   getHolidays: function(year, month) {
@@ -18,7 +18,7 @@ module.exports = {
   /**
    * Get other days (important but working days)
    * @param  {Number}   year     Year to get results for
-   * @param  {Number}   [month]    Month to get results for
+   * @param  {Number}   [month]    Month to get results for (1-12)
    * @return Date array
    */
   getOtherDays: function(year, month) {
@@ -28,7 +28,7 @@ module.exports = {
   /**
    * Get both holidays and other days
    * @param  {Number}   year     Year to get results for
-   * @param  {Number}   [month]    Month to get results for
+   * @param  {Number}   [month]    Month to get results for (1-12)
    * @return Date array
    */
   getAllDays: function(year, month) {
