@@ -53,6 +53,10 @@ JSON.stringify(notableDays2018) === [
 
 ## Changelog
 
+### Upcoming...
+- handle negative `workdaysFromDate` day offsets, for "n-th workday _before_ {Date}"
+- `workdaysFromDate` alwways returns new `Date` object
+
 ### 3.2.0
 _2021-07-14_
 - Add TypeScript type definitions

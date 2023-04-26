@@ -35,9 +35,9 @@ export function getAllDays(
   month?: number
 ): Array<Holiday | SpecialDay>;
 
-/** Returns the `days`-th working day after date */
+/** Returns the `days`-th working day before/after the reference date */
 export function workdaysFromDate(
-  /** Number (>=1) of working days to count */
+  /** Number of working days to count (either positive or negative) */
   days: number,
   /** The reference date. Defaults to current day */
   date?: Date

@@ -38,7 +38,7 @@ module.exports = {
   /**
    * Get the date afer a certain amount of work days from a Date Object
    * Non holidays and non weekends.
-   * @param  {Number}   days
+   * @param  {Number}   days    Number of days to count, either positive or negative.
    * @param  {Date}     [date]    Date to start counting from
    * @return Date
    */
@@ -99,28 +99,30 @@ function getAllDays(year, month) {
   return days;
 }
 
-function workdaysFromDate(days, date) {
-  if (days < 1) {
-    return date;
+function workdaysFromDate(days, refDate) {
+  var date = refDate ? new Date(refDate) : new Date();
+  date = new Date(date.toISOString().slice(0,10));
+
+  if (days === 0) {
+    return date
   }
-  date = date ? new Date(date) : new Date();
-  date = new Date( date.getFullYear(), date.getMonth(), date.getDate() );
+  var delta = days > 0 ? 1 : -1;
+  var count = Math.abs(days);
 
   var holidays = getHolidays(date.getFullYear());
 
-  while(days > 0) {
-    date.setDate(date.getDate() + 1);
+  while(count > 0) {
+    date.setDate(date.getDate() + delta);
     var wDay = date.getDay();
     var dateTime = date.getTime();
 
-    if ( wDay !== 0 && wDay !== 6 ) {
-      var holiday = holidays.filter(function(day) {
-        return day.date.getTime() === dateTime;
-      });
-      if (holiday.length === 0) {
-        days -= 1;
-      }
+    var notWorkDay = wDay === 0 || wDay === 6 || holidays.some(function(day) {
+      return day.date.getTime() === dateTime;
+    });
+    if (notWorkDay) {
+      continue;
     }
+    count -= 1;
   }
 
   return date;
