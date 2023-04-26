@@ -11,10 +11,8 @@
     "url": "https://github.com/gaui"
   },
   "contributors": [
-    {
-      "name": "Bjarki Gunnarsson",
-      "url": "https://github.com/bjarkig82"
-    }
+    "Bjarki Gunnarsson (https://github.com/bjarkig82)",
+    "Már Örlygsson <mar.nospam@anomy.net>"
   ],
   "license": "ISC",
   "repository": {
