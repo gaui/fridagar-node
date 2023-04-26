@@ -35,11 +35,17 @@ export function getAllDays(
   month?: number
 ): Array<Holiday | SpecialDay>;
 
-/** Returns the `days`-th working day before/after the reference date */
+/**
+ * Returns the `days`-th working day before/after the reference date.
+ *
+ * Defaults to counting half-day holidays as "non-work" days.
+ */
 export function workdaysFromDate(
   /** Number of working days to count (either positive or negative) */
   days: number,
   /** The reference date. Defaults to current day */
-  date?: Date
+  date?: Date,
+  /** Defaults to counting half-day holidays as "non-work" days */
+  includeHalfDays?: boolean
 ): Date;
 

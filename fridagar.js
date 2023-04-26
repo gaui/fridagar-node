@@ -40,10 +40,11 @@ module.exports = {
    * Non holidays and non weekends.
    * @param  {Number}   days    Number of days to count, either positive or negative.
    * @param  {Date}     [date]    Date to start counting from
+   * @param  {Boolean}  [includeHalfDays]    Whether to include half-day holidays as workdays
    * @return Date
    */
-  workdaysFromDate: function(days, date) {
-    return workdaysFromDate(days, date);
+  workdaysFromDate: function(days, date, includeHalfDays) {
+    return workdaysFromDate(days, date, includeHalfDays);
   }
 };
 
@@ -99,7 +100,7 @@ function getAllDays(year, month) {
   return days;
 }
 
-function workdaysFromDate(days, refDate) {
+function workdaysFromDate(days, refDate, includeHalfDays) {
   var date = refDate ? new Date(refDate) : new Date();
   date = new Date(date.toISOString().slice(0,10));
 
@@ -117,7 +118,7 @@ function workdaysFromDate(days, refDate) {
     var dateTime = date.getTime();
 
     var notWorkDay = wDay === 0 || wDay === 6 || holidays.some(function(day) {
-      return day.date.getTime() === dateTime;
+      return day.date.getTime() === dateTime && (!includeHalfDays || !day.halfDay);
     });
     if (notWorkDay) {
       continue;
