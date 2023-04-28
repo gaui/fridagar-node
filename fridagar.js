@@ -1,54 +1,14 @@
 var CalculateHolidays = require('./CalculateHolidays');
 
+
+
 /**
- * Module exports
- * @type {Object}
+ * Get holidays (non-working days)
+ * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [month]    Month to get results for (1-12)
+ * @return Date array
  */
-module.exports = {
-  /**
-   * Get holidays (non-working days)
-   * @param  {Number}   year     Year to get results for
-   * @param  {Number}   [month]    Month to get results for (1-12)
-   * @return Date array
-   */
-  getHolidays: function(year, month) {
-    return getHolidays(year, month);
-  },
-
-  /**
-   * Get other days (important but working days)
-   * @param  {Number}   year     Year to get results for
-   * @param  {Number}   [month]    Month to get results for (1-12)
-   * @return Date array
-   */
-  getOtherDays: function(year, month) {
-    return getOtherDays(year, month);
-  },
-
-  /**
-   * Get both holidays and other days
-   * @param  {Number}   year     Year to get results for
-   * @param  {Number}   [month]    Month to get results for (1-12)
-   * @return Date array
-   */
-  getAllDays: function(year, month) {
-    return getAllDays(year, month);
-  },
-
-  /**
-   * Get the date afer a certain amount of work days from a Date Object
-   * Non holidays and non weekends.
-   * @param  {Number}   days    Number of days to count, either positive or negative.
-   * @param  {Date}     [date]    Date to start counting from
-   * @param  {Boolean}  [includeHalfDays]    Whether to include half-day holidays as workdays
-   * @return Date
-   */
-  workdaysFromDate: function(days, date, includeHalfDays) {
-    return workdaysFromDate(days, date, includeHalfDays);
-  }
-};
-
-function getHolidays(year, month) {
+exports.getHolidays = function getHolidays(year, month) {
   if(!year) {
     year = (new Date()).getFullYear();
   }
@@ -66,8 +26,14 @@ function getHolidays(year, month) {
   return holidays;
 }
 
-function getOtherDays(year, month) {
-  if(!year) {
+/**
+ * Get other days (important but working days)
+ * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [month]    Month to get results for (1-12)
+ * @return Date array
+ */
+exports.getOtherDays =  function(year, month) {
+    if(!year) {
     year = (new Date()).getFullYear();
   }
 
@@ -84,7 +50,13 @@ function getOtherDays(year, month) {
   return otherDays;
 }
 
-function getAllDays(year, month) {
+/**
+ * Get both holidays and other days
+ * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [month]    Month to get results for (1-12)
+ * @return Date array
+ */
+exports.getAllDays = function(year, month) {
   if(!year) {
     year = (new Date()).getFullYear();
   }
@@ -100,7 +72,15 @@ function getAllDays(year, month) {
   return days;
 }
 
-function workdaysFromDate(days, refDate, includeHalfDays) {
+/**
+ * Get the date afer a certain amount of work days from a Date Object
+ * Non holidays and non weekends.
+ * @param  {Number}   days    Number of days to count, either positive or negative.
+ * @param  {Date}     [date]    Date to start counting from
+ * @param  {Boolean}  [includeHalfDays]    Whether to include half-day holidays as workdays
+ * @return Date
+ */
+exports.workdaysFromDate = function(days, date, includeHalfDays) {
   var date = refDate ? new Date(refDate) : new Date();
   date = new Date(date.toISOString().slice(0,10));
 
