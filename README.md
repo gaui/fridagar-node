@@ -55,7 +55,7 @@ JSON.stringify(notableDays2018) === [
 
 ### Upcoming...
 - `workdaysFromDate` improvements:
-  - Fix: Alwways return new `Date` object
+  - Fix: Always return new `Date` object
   - Handle negative day offsets, for "n-th workday _before_ {Date}"
   - Add third `includeHalfDays` boolean parameter
 - Better support for named `import`s from esm projects (`pkg.type === 'module'`)
