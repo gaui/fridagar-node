@@ -72,6 +72,34 @@ exports.getAllDays = function(year, month) {
   return days;
 }
 
+var isSpecialDay = function(date) {
+  date = date || new Date();
+  var dateTime = date.getTime();
+  var holidays = CalculateHolidays.holidays(date.getFullYear());
+  return holidays.find(function(day) {
+    return day.date.getTime() === dateTime;
+  })
+}
+
+/**
+ * Checks if a given date is an officia holiday and if so, returns its
+ * holiday info.
+ * @param  {Date}  [date]  Date to check
+ * @return Date info or undefined
+ */
+exports.isHoliday = function(date) {
+  const dayInfo = isSpecialDay(date);
+  return dayInfo && dayInfo.holiday ? dayInfo : undefined
+}
+
+/**
+ * Checks if a given date is either an official or unofficial holiday and if so,
+ * returns it's info object.
+ * @param  {Date}  [date]  Date to check
+ * @return Date info or undefined
+ */
+exports.isSpecialDay = isSpecialDay;
+
 /**
  * Get the date afer a certain amount of work days from a Date Object
  * Non holidays and non weekends.

@@ -36,6 +36,26 @@ export function getAllDays(
 ): Array<Holiday | SpecialDay>;
 
 /**
+ * Checks if a given date is an officia holiday and if so, returns its
+ * holiday info.
+ */
+export function isHoliday(
+  /** Defaults to the current day */
+  day?: Date
+): Holiday | undefined;
+
+/**
+ * Checks if a given date is either an official or unofficial holiday and if so,
+ * returns it's info object.
+ */
+export function isSpecialDay(
+  /** Defaults to the current day */
+  day?: Date
+): Holiday | SpecialDay | undefined;
+
+
+
+/**
  * Returns the `days`-th working day before/after the reference date.
  *
  * Defaults to counting half-day holidays as "non-work" days.
