@@ -118,7 +118,7 @@ exports.workdaysFromDate = function(days, date, includeHalfDays) {
   var delta = days > 0 ? 1 : -1;
   var count = Math.abs(days);
 
-  var holidays = getHolidays(date.getFullYear());
+  var holidays = CalculateHolidays.holidays(date.getFullYear());
 
   while(count > 0) {
     date.setDate(date.getDate() + delta);
