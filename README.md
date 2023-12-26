@@ -56,6 +56,7 @@ JSON.stringify(notableDays2018) === [
 ### Upcoming...
 - `workdaysFromDate` improvements:
   - Fix: Always return new `Date` object
+  - fix: Correctly cross year boundries
   - Handle negative day offsets, for "n-th workday _before_ {Date}"
   - Add third `includeHalfDays` boolean parameter
 - Fix: Set summer and winter solstice date timestamp to 00:00

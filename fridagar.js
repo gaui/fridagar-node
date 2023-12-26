@@ -118,12 +118,21 @@ exports.workdaysFromDate = function(days, refDate, includeHalfDays) {
   var delta = days > 0 ? 1 : -1;
   var count = Math.abs(days);
 
-  var holidays = CalculateHolidays.holidays(date.getFullYear());
+  
+  let holidays;
+  let holidayYear;
 
   while(count > 0) {
     date.setDate(date.getDate() + delta);
     var wDay = date.getDay();
     var dateTime = date.getTime();
+    var dateYear = date.getFullYear()
+
+    if (dateYear !== holidayYear) {
+      holidayYear = dateYear
+      holidays = CalculateHolidays
+        .holidays(holidayYear)
+    }
 
     var notWorkDay = wDay === 0 || wDay === 6 || holidays.some(function(day) {
       return day.date.getTime() === dateTime && (!includeHalfDays || !day.halfDay);
