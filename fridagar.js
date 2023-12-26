@@ -132,6 +132,7 @@ exports.workdaysFromDate = function(days, refDate, includeHalfDays) {
       holidayYear = dateYear
       holidays = CalculateHolidays
         .holidays(holidayYear)
+        .filter((info) => info.holiday);
     }
 
     var notWorkDay = wDay === 0 || wDay === 6 || holidays.some(function(day) {
