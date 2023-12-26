@@ -73,18 +73,18 @@ exports.getAllDays = function(year, month) {
 }
 
 var isSpecialDay = function(date) {
-  date = date || new Date();
-  var dateTime = date.getTime();
+  let dateMs = date.getTime();
+  dateMs -= dateMs % 86400000; // Floor to nearest T00:00:00.000Z
   var holidays = CalculateHolidays.holidays(date.getFullYear());
   return holidays.find(function(day) {
-    return day.date.getTime() === dateTime;
+    return day.date.getTime() === dateMs;
   })
 }
 
 /**
  * Checks if a given date is an officia holiday and if so, returns its
  * holiday info.
- * @param  {Date}  [date]  Date to check
+ * @param  {Date} date  Date to check
  * @return Date info or undefined
  */
 exports.isHoliday = function(date) {
@@ -95,7 +95,7 @@ exports.isHoliday = function(date) {
 /**
  * Checks if a given date is either an official or unofficial holiday and if so,
  * returns it's info object.
- * @param  {Date}  [date]  Date to check
+ * @param  {Date} date  Date to check
  * @return Date info or undefined
  */
 exports.isSpecialDay = isSpecialDay;
