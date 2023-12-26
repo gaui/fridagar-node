@@ -104,11 +104,11 @@ exports.isSpecialDay = isSpecialDay;
  * Get the date afer a certain amount of work days from a Date Object
  * Non holidays and non weekends.
  * @param  {Number}   days    Number of days to count, either positive or negative.
- * @param  {Date}     [date]    Date to start counting from
+ * @param  {Date}     [refDate]    Date to start counting from
  * @param  {Boolean}  [includeHalfDays]    Whether to include half-day holidays as workdays
  * @return Date
  */
-exports.workdaysFromDate = function(days, date, includeHalfDays) {
+exports.workdaysFromDate = function(days, refDate, includeHalfDays) {
   var date = refDate ? new Date(refDate) : new Date();
   date = new Date(date.toISOString().slice(0,10));
 
