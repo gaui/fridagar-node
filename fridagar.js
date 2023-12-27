@@ -1,54 +1,12 @@
-var CalculateHolidays = require('./CalculateHolidays');
+var CalculateHolidays = require('./CalculateHolidays.js');
+var { dayMs } = CalculateHolidays
 
 
+const cloneInfo = (dayInfo) => ({
+  ...dayInfo,
+  date: new Date(dayInfo.date)
+})
 
-/**
- * Get holidays (non-working days)
- * @param  {Number}   year     Year to get results for
- * @param  {Number}   [month]    Month to get results for (1-12)
- * @return Date array
- */
-exports.getHolidays = function getHolidays(year, month) {
-  if(!year) {
-    year = (new Date()).getFullYear();
-  }
-
-  var holidays = CalculateHolidays.holidays(year).filter(function(day) {
-    return day.holiday === true;
-  });
-
-  if(month) {
-    holidays = holidays.filter(function(day) {
-      return day.date.getMonth() === month-1;
-    });
-  }
-
-  return holidays;
-}
-
-/**
- * Get other days (important but working days)
- * @param  {Number}   year     Year to get results for
- * @param  {Number}   [month]    Month to get results for (1-12)
- * @return Date array
- */
-exports.getOtherDays =  function(year, month) {
-    if(!year) {
-    year = (new Date()).getFullYear();
-  }
-
-  var otherDays = CalculateHolidays.holidays(year).filter(function(day) {
-    return day.holiday === false;
-  });
-
-  if(month) {
-    otherDays = otherDays.filter(function(day) {
-      return day.date.getMonth() === month-1;
-    });
-  }
-
-  return otherDays;
-}
 
 /**
  * Get both holidays and other days
@@ -69,22 +27,39 @@ exports.getAllDays = function(year, month) {
     });
   }
 
-  return days;
-}
-
-var isSpecialDay = function(date) {
-  let dateMs = date.getTime();
-  dateMs -= dateMs % 86400000; // Floor to nearest T00:00:00.000Z
-  var holidays = CalculateHolidays.holidays(date.getFullYear());
-  return holidays.find(function(day) {
-    return day.date.getTime() === dateMs;
-  })
+  return days.map(cloneInfo);
 }
 
 /**
- * Checks if a given date is an officia holiday and if so, returns its
- * holiday info.
- * @param  {Date} date  Date to check
+ * Get holidays (non-working days)
+ * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [month]    Month to get results for (1-12)
+ * @return Date array
+ */
+exports.getHolidays =  (year, month) => exports.getAllDays(year, month).filter((day) => day.holiday);
+
+/**
+ * Get other days (important but working days)
+ * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [month]    Month to get results for (1-12)
+ * @return Date array
+ */
+exports.getOtherDays = (year, month) => exports.getAllDays(year, month).filter((day) => !day.holiday);
+
+var isSpecialDay = function(date) {
+  let dateMs = date.getTime();
+  dateMs -= dateMs % 86400000;
+  var holidays = CalculateHolidays.holidays(date.getFullYear());
+  const dayInfo = holidays.find(function(day) {
+    return day.date.getTime() === dateMs;
+  })
+  return dayInfo ? cloneInfo(dayInfo) : undefined
+}
+
+/**
+ * Checks if a given date is an official holiday
+ * and if so, returns its info object.
+ * @param  {Date}  date  Date to check
  * @return Date info or undefined
  */
 exports.isHoliday = function(date) {
@@ -93,9 +68,9 @@ exports.isHoliday = function(date) {
 }
 
 /**
- * Checks if a given date is either an official or unofficial holiday and if so,
- * returns it's info object.
- * @param  {Date} date  Date to check
+ * Checks if a given date is either an official or unofficial holiday
+ * and if so, returns its info object.
+ * @param  {Date}  date  Date to check
  * @return Date info or undefined
  */
 exports.isSpecialDay = isSpecialDay;
@@ -118,7 +93,6 @@ exports.workdaysFromDate = function(days, refDate, includeHalfDays) {
   var delta = days > 0 ? 1 : -1;
   var count = Math.abs(days);
 
-  
   let holidays;
   let holidayYear;
 
@@ -136,7 +110,7 @@ exports.workdaysFromDate = function(days, refDate, includeHalfDays) {
     }
 
     var notWorkDay = wDay === 0 || wDay === 6 || holidays.some(function(day) {
-      return day.date.getTime() === dateTime && (!includeHalfDays || !day.halfDay);
+      return day.date.getTime() === dateTime && !(includeHalfDays && day.halfDay);
     });
     if (notWorkDay) {
       continue;

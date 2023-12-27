@@ -1,3 +1,5 @@
+var dayMs = 24 * 3600 * 1000
+
 function easter(year) {
   var a = year % 19;
   var b = Math.floor(year / 100);
@@ -23,187 +25,176 @@ function findNextWeekDay(year, month, day, targetWDay) {
   return date;
 }
 
-function bondadagur(year) {
-  return findNextWeekDay(year, 0, 19, 5);
-}
 
-function sumardagurinnFyrsti(year) {
-  return findNextWeekDay(year, 3, 19, 4);
-}
-
-function fridagurVerslunarmanna(year) {
-  return findNextWeekDay(year, 7, 1, 1);
-}
-
+var solsticeInterval = (56.5 + 47 * 60 + 5 * 3600 + 365 * 86400) * 1000;
+var solsticeBaseSummer;
+var solsticeBaseWinter;
 function solstice(year, season) {
-  var interval = 1000 * (56.5 + 47 * 60 + 5 * 3600 + 365 * 86400);
-
-  var date = (season === 'winter') ?
-      new Date(2016, 11, 21, 10, 44):
-      new Date(2016, 5, 20, 22, 34); // Default to 'summer'
-
-  while(date.getFullYear() < year) {
-    date.setTime(date.getTime() + interval);
+  if (!solsticeBaseSummer) {
+    solsticeBaseSummer = new Date(2016, 11, 21, 10, 44).getTime()
+    solsticeBaseWinter = new Date(2016, 5, 20, 22, 34).getTime()
   }
-
-  while(date.getFullYear() > year) {
-    date.setTime(date.getTime() - interval);
-  }
-
-  return new Date(date.toISOString().slice(0,10));
+  let time = season === 'winter' ? solsticeBaseWinter : solsticeBaseSummer
+  time = time + solsticeInterval * (year - 2016);
+  return new Date(time - time % dayMs)
 }
 
 exports.holidays = holidays;
+exports.dayMs = dayMs
+
+let yearCache = {};
 
 function holidays(year) {
-  var easterSunday = easter(year);
-  var day = 86400000;
-
-  var holidays = [
-    {
-      date: new Date(year, 0, 1),
-      description: 'Nýársdagur',
-      holiday: true
-    },
-    {
-      date: bondadagur(year),
-      description: 'Bóndadagur',
-      holiday: false
-    },
-    {
-      date: new Date(easterSunday.getTime() - (48 * day)),
-      description: 'Bolludagur',
-      holiday: false
-    },
-    {
-      date: new Date(easterSunday.getTime() - (47 * day)),
-      description: 'Sprengidagur',
-      holiday: false
-    },
-    {
-      date: new Date(easterSunday.getTime() - (46 * day)),
-      description: 'Öskudagur',
-      holiday: false
-    },
-    {
-      date: new Date(year, 1, 14),
-      description: 'Valentínusardagur',
-      holiday: false
-    },
-    {
-      date: new Date(bondadagur(year).getTime() + (30 * day)),
-      description: 'Konudagur',
-      holiday: false
-    },
-    {
-      date: new Date(easterSunday.getTime() - (3 * day)),
-      description: 'Skírdagur',
-      holiday: true
-    },
-    {
-      date: new Date(easterSunday.getTime() - (2 * day)),
-      description: 'Föstudagurinn langi',
-      holiday: true
-    },
-    {
-      date: easterSunday,
-      description: 'Páskadagur',
-      holiday: true
-    },
-    {
-      date: new Date(easterSunday.getTime() + day),
-      description: 'Annar í páskum',
-      holiday: true
-    },
-    {
-      date: sumardagurinnFyrsti(year),
-      description: 'Sumardagurinn fyrsti',
-      holiday: true
-    },
-    {
-      date: new Date(easterSunday.getTime() + (39 * day)),
-      description: 'Uppstigningardagur',
-      holiday: true
-    },
-    {
-      date: new Date(easterSunday.getTime() + (49 * day)),
-      description: 'Hvítasunnudagur',
-      holiday: true
-    },
-    {
-      date: new Date(easterSunday.getTime() + (50 * day)),
-      description: 'Annar í Hvítasunnu',
-      holiday: true
-    },
-    {
-      date: new Date(year, 4, 1),
-      description: 'Verkalýðsdagurinn',
-      holiday: true
-    },
-    {
-      date: new Date(year, 5, 17),
-      description: 'Þjóðhátíðardagur Íslendinga',
-      holiday: true
-    },
-    {
-      date: solstice(year, 'summer'),
-      description: 'Sumarsólstöður',
-      holiday: false
-    },
-    {
-      date: new Date(year, 5, 24),
-      description: 'Jónsmessa',
-      holiday: false
-    },
-    {
-      date: fridagurVerslunarmanna(year),
-      description: 'Frídagur verslunarmanna',
-      holiday: true
-    },
-    {
-      date: new Date(year, 9, 31),
-      description: 'Hrekkjavaka',
-      holiday: false
-    },
-    {
-      date: new Date(year, 11, 1),
-      description: 'Fullveldisdagurinn',
-      holiday: false
-    },
-    {
-      date: solstice(year, 'winter'),
-      description: 'Vetrarsólstöður',
-      holiday: false
-    },
-    {
-      date: new Date(year, 11, 23),
-      description: 'Þorláksmessa',
-      holiday: false
-    },
-    {
-      date: new Date(year, 11, 24),
-      description: 'Aðfangadagur',
-      holiday: true,
-      halfDay: true
-    },
-    {
-      date: new Date(year, 11, 25),
-      description: 'Jóladagur',
-      holiday: true
-    },
-    {
-      date: new Date(year, 11, 26),
-      description: 'Annar í Jólum',
-      holiday: true
-    },
-    {
-      date: new Date(year, 11, 31),
-      description: 'Gamlársdagur',
-      holiday: true,
-      halfDay: true
-    },
-  ];
-
-
+  let holidays = yearCache[year] 
+  if (!holidays) {
+    const bondadagur = findNextWeekDay(year, 0, 19, 5)
+    var easterSunday = easter(year);
+    var easterSundayMs = easterSunday.getTime()
+    holidays = yearCache[year] = [
+      {
+        date: new Date(year, 0, 1),
+        description: 'Nýársdagur',
+        holiday: true
+      },
+      {
+        date: bondadagur,
+        description: 'Bóndadagur',
+        holiday: false
+      },
+      {
+        date: new Date(easterSundayMs - (48 * dayMs)),
+        description: 'Bolludagur',
+        holiday: false
+      },
+      {
+        date: new Date(easterSundayMs - (47 * dayMs)),
+        description: 'Sprengidagur',
+        holiday: false
+      },
+      {
+        date: new Date(easterSundayMs - (46 * dayMs)),
+        description: 'Öskudagur',
+        holiday: false
+      },
+      {
+        date: new Date(year, 1, 14),
+        description: 'Valentínusardagur',
+        holiday: false
+      },
+      {
+        date: new Date(bondadagur.getTime() + (30 * dayMs)),
+        description: 'Konudagur',
+        holiday: false
+      },
+      {
+        date: new Date(easterSundayMs - (3 * dayMs)),
+        description: 'Skírdagur',
+        holiday: true
+      },
+      {
+        date: new Date(easterSundayMs - (2 * dayMs)),
+        description: 'Föstudagurinn langi',
+        holiday: true
+      },
+      {
+        date: easterSunday,
+        description: 'Páskadagur',
+        holiday: true
+      },
+      {
+        date: new Date(easterSundayMs + dayMs),
+        description: 'Annar í páskum',
+        holiday: true
+      },
+      {
+        date: findNextWeekDay(year, 3, 19, 4),
+        description: 'Sumardagurinn fyrsti',
+        holiday: true
+      },
+      {
+        date: new Date(easterSundayMs + (39 * dayMs)),
+        description: 'Uppstigningardagur',
+        holiday: true
+      },
+      {
+        date: new Date(easterSundayMs + (49 * dayMs)),
+        description: 'Hvítasunnudagur',
+        holiday: true
+      },
+      {
+        date: new Date(easterSundayMs + (50 * dayMs)),
+        description: 'Annar í Hvítasunnu',
+        holiday: true
+      },
+      {
+        date: new Date(year, 4, 1),
+        description: 'Verkalýðsdagurinn',
+        holiday: true
+      },
+      {
+        date: new Date(year, 5, 17),
+        description: 'Þjóðhátíðardagur Íslendinga',
+        holiday: true
+      },
+      {
+        date: solstice(year, 'summer'),
+        description: 'Sumarsólstöður',
+        holiday: false
+      },
+      {
+        date: new Date(year, 5, 24),
+        description: 'Jónsmessa',
+        holiday: false
+      },
+      {
+        date: findNextWeekDay(year, 7, 1, 1),
+        description: 'Frídagur verslunarmanna',
+        holiday: true
+      },
+      {
+        date: new Date(year, 9, 31),
+        description: 'Hrekkjavaka',
+        holiday: false
+      },
+      {
+        date: new Date(year, 11, 1),
+        description: 'Fullveldisdagurinn',
+        holiday: false
+      },
+      {
+        date: solstice(year, 'winter'),
+        description: 'Vetrarsólstöður',
+        holiday: false
+      },
+      {
+        date: new Date(year, 11, 23),
+        description: 'Þorláksmessa',
+        holiday: false
+      },
+      {
+        date: new Date(year, 11, 24),
+        description: 'Aðfangadagur',
+        holiday: true,
+        halfDay: true
+      },
+      {
+        date: new Date(year, 11, 25),
+        description: 'Jóladagur',
+        holiday: true
+      },
+      {
+        date: new Date(year, 11, 26),
+        description: 'Annar í Jólum',
+        holiday: true
+      },
+      {
+        date: new Date(year, 11, 31),
+        description: 'Gamlársdagur',
+        holiday: true,
+        halfDay: true
+      },
+    ];
+    setTimeout(() => delete yearCache[year], 500)
+  }
   return holidays;
 }

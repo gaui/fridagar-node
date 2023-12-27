@@ -61,6 +61,7 @@ JSON.stringify(notableDays2018) === [
   - Add third `includeHalfDays` boolean parameter
 - Fix: Set summer and winter solstice date timestamp to 00:00
 - Add convenience methods `isHoliday` and `isSpecialDay`
+- perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)
 - Better support for named `import`s from esm projects (`pkg.type === 'module'`)
 
 ### 3.2.0
