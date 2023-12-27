@@ -8,7 +8,12 @@ import {
   getAllDays,
 } from "./fridagar.js";
 import * as fridagar from "./fridagar.js";
-import type { Holiday, SpecialDay } from "./fridagar.js";
+import type {
+  Holiday,
+  SpecialDay,
+  HolidayKey,
+  SpecialDayKey,
+} from "./fridagar.js";
 
 if (false as boolean) {
   // Type tests/assertsions
@@ -24,6 +29,7 @@ if (false as boolean) {
   const foo1: Array<Holiday | SpecialDay> = getAllDays();
   const foo2: Array<Holiday> = getHolidays();
   const foo3: Array<SpecialDay> = getOtherDays();
+  const foo4: HolidayKey | SpecialDayKey = "jun17";
 }
 
 const MIDNIGHT = "T00:00:00.000Z";

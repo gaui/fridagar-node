@@ -3,6 +3,8 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+- feat: Add `key` prop to the day info objects to aid translations
+- feat: Export string union types `HolidayKey` and `SpecialDayKey`
 - `workdaysFromDate` improvements:
   - feat: Handle negative day offsets, for "n-th workday _before_ {Date}"
   - feat: Add third `includeHalfDays` boolean parameter

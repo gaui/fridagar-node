@@ -1,4 +1,9 @@
-import type { Holiday, SpecialDay } from "./calculations.js";
+import type {
+  Holiday,
+  SpecialDay,
+  HolidayKey,
+  SpecialDayKey,
+} from "./calculations.js";
 import { calcSpecialDays, dayMs } from "./calculations.js";
 
 const cloneInfo = <T extends Holiday | SpecialDay>(dayInfo: T): T => ({
@@ -6,7 +11,7 @@ const cloneInfo = <T extends Holiday | SpecialDay>(dayInfo: T): T => ({
   date: new Date(dayInfo.date),
 });
 
-export type { Holiday, SpecialDay };
+export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey };
 
 /**
  * Returns all "holidays" — official and unofficial.
