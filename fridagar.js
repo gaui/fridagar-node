@@ -10,18 +10,18 @@ const cloneInfo = (dayInfo) => ({
 
 /**
  * Get both holidays and other days
- * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [year]     Year to get results for
  * @param  {Number}   [month]    Month to get results for (1-12)
  * @return Date array
  */
 exports.getAllDays = function(year, month) {
-  if(!year) {
+  if(year == null) {
     year = (new Date()).getFullYear();
   }
 
   var days = CalculateHolidays.holidays(year);
 
-  if(month) {
+  if(month != null) {
     days = days.filter(function(day) {
       return day.date.getMonth() === month-1;
     });
@@ -32,7 +32,7 @@ exports.getAllDays = function(year, month) {
 
 /**
  * Get holidays (non-working days)
- * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [year]     Year to get results for
  * @param  {Number}   [month]    Month to get results for (1-12)
  * @return Date array
  */
@@ -40,7 +40,7 @@ exports.getHolidays =  (year, month) => exports.getAllDays(year, month).filter((
 
 /**
  * Get other days (important but working days)
- * @param  {Number}   year     Year to get results for
+ * @param  {Number}   [year]     Year to get results for
  * @param  {Number}   [month]    Month to get results for (1-12)
  * @return Date array
  */
