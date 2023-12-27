@@ -18,5 +18,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/gaui/fridagar-node"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.0"
   }
 }
