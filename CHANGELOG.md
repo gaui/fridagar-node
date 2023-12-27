@@ -11,6 +11,7 @@
   - fix: Always return new `Date` object
   - fix: Correctly cross year boundries
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
+- feat: Shorten name/description of `jun17` to "Þjóðhátíðardagurinn"
 - fix: Set summer and winter solstice date timestamp to midnight
 - fix: Handle `0` value year and month arguments correctly
 - docs: Improve JSDoc comments

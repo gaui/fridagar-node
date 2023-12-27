@@ -198,7 +198,7 @@ export const calcSpecialDays = (year: number) => {
       },
       {
         date: new Date(year, 5, 17),
-        description: "Þjóðhátíðardagur Íslendinga",
+        description: "Þjóðhátíðardagurinn",
         key: "jun17",
         holiday: true,
       },
