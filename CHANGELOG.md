@@ -4,14 +4,16 @@
 
 - ... <!-- Add new lines here. -->
 - `workdaysFromDate` improvements:
-  - Fix: Always return new `Date` object
+  - feat: Handle negative day offsets, for "n-th workday _before_ {Date}"
+  - feat: Add third `includeHalfDays` boolean parameter
+  - fix: Always return new `Date` object
   - fix: Correctly cross year boundries
-  - Handle negative day offsets, for "n-th workday _before_ {Date}"
-  - Add third `includeHalfDays` boolean parameter
-- Fix: Set summer and winter solstice date timestamp to 00:00
-- Add convenience methods `isHoliday` and `isSpecialDay`
+- feat: Add convenience methods `isHoliday` and `isSpecialDay`
+- fix: Set summer and winter solstice date timestamp to midnight
+- fix: Handle `0` value year and month arguments correctly
+- docs: Improve JSDoc comments
 - perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)
-- Better support for named `import`s from esm projects (`pkg.type === 'module'`)
+- build: Better support for named `import`s from esm projects (`pkg.type === 'module'`)
 
 ## 3.2.0
 
