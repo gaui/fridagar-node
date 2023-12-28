@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2018",
+    "resolveJsonModule": false,
+    "noEmit": false,
+    "declaration": true
+  },
+  "include": ["src/fridagar.ts"]
+}
+ 

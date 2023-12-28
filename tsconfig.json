@@ -1,7 +1,18 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
+    "lib": ["esnext"],
+    "allowSyntheticDefaultImports": true,
+    "module": "NodeNext",
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+
+    "strict": true, // Don't be daft. Always be strict.
+    "noUncheckedIndexedAccess": true, // Should be part of strict
+    "noImplicitAny": true,
+    "useUnknownInCatchVariables": true
   },
-  "exclude": ["**/node_modules"]
+  "exclude": ["node_modules", "_npm-lib"],
+  // "include": ["**/*.ts", "**/*.tsx"]
 }

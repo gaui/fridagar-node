@@ -3,23 +3,44 @@
   "version": "3.2.0",
   "description": "Small library for looking up Icelandic public holidays and other commonly observed 'special' days.",
   "main": "fridagar.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": {
-    "name": "Guðjón Jónsson",
-    "url": "https://github.com/gaui"
-  },
+  "private": true,
+  "type": "module",
   "contributors": [
     "Bjarki Gunnarsson (https://github.com/bjarkig82)",
+    "Guðjón Jónsson (https://github.com/gaui)",
     "Már Örlygsson <mar.nospam@anomy.net>"
   ],
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gaui/fridagar-node"
-  },
+  "repository": "ssh://git@github.com:gaui/fridagar-node.git",
   "devDependencies": {
-    "@types/bun": "^1.0.0"
+    "@types/bun": "^1.0.0",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "dev": "bun test --watch",
+    "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1",
+    "publish:lib": "bun run build  &&  bun npm-publish.ts",
+    "build": "bun test  &&  bun build.ts",
+    "test": "bun test"
+  },
+  "engines": {
+    "node": "9999. Please use bun",
+    "npm": "9999. Please use bun",
+    "bun": "^1.0.20"
+  },
+  "dist_package_json": {
+    "type": null,
+    "private": null,
+    "scripts": null,
+    "devDependencies": null,
+    "hxmstyle": null,
+    "engines": null,
+    "sideEffects": false,
+    "exports": {
+      ".": {
+        "import": "./esm/index.js",
+        "require": "./index.js"
+      }
+    }
   }
 }
