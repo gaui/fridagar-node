@@ -14,9 +14,11 @@
 - feat: Shorten name/description of `jun17` to "Þjóðhátíðardagurinn"
 - fix: Set summer and winter solstice date timestamp to midnight
 - fix: Handle `0` value year and month arguments correctly
-- docs: Improve JSDoc comments
 - perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)
-- build: Better support for named `import`s from esm projects (`pkg.type === 'module'`)
+- docs: Add a proper README with code examples for all methods and types.
+- docs: Improve inline JSDoc comments
+- docs/build: Add unit tests for correctness and stability of the library
+- build: Add pkg.exports field exposing both ESM and CommonJS versions.
 
 ## 3.2.0
 
