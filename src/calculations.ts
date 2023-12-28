@@ -1,3 +1,9 @@
+/**
+ * Identifiers for Icelandic public holidays.
+ * Useful for building translations.
+ * 
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-holidaykey-specialdaykey
+ */
 export type HolidayKey =
   | "nyars"
   | "skir"
@@ -16,6 +22,12 @@ export type HolidayKey =
   | "jola2"
   | "gamlars";
 
+/**
+ * Identifiers for Icelandic commonly celebrated "special" days.
+ * Useful for building translations.
+ * 
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-holidaykey-specialdaykey
+ */
 export type SpecialDayKey =
   | "bonda"
   | "bollu"
@@ -30,18 +42,36 @@ export type SpecialDayKey =
   | "vetsolst"
   | "thorl";
 
-export type Holiday = {
+/**
+ * An object describing an Icelandic public holiday.
+ * 
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-holiday
+ */
+export type Holiday = {  
   date: Date;
+  /** The Icelandic name of the holiday */
   description: string;
+  /** Stable identifier for each holiday. Useful for translation */
   key: HolidayKey;
+  /** Indicates that the day IS a public holiday */
   holiday: true;
+  /** Indicates if it's only a half-day holiday */
   halfDay?: true;
 };
 
+/**
+ * An object describing an Icelandic commonly celebrated "special" day,
+ * such as "Bolludagur", etc.
+ * 
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-specialday
+ */
 export type SpecialDay = {
   date: Date;
+  /** The Icelandic name of the "special" day */
   description: string;
+  /** Stable identifier for each special day. Useful for building translation. */
   key: SpecialDayKey;
+  /** Indicates that the day IS NOT a public holiday */
   holiday: false;
   halfDay?: never;
 };

@@ -14,11 +14,14 @@ const cloneInfo = <T extends Holiday | SpecialDay>(dayInfo: T): T => ({
 export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey };
 
 /**
- * Returns all "holidays" — official and unofficial.
+ * Returns all Icelandic public holidays and commonly celebrated "special" days
+ * for a given year — optionally narrowed down to a single month.
  *
  * @param  {number}  [year]  Year to get results for. Defaults to the current year
  * @param  {number}  [month]  Month to get results for (1-based, where January is 1 and December is 12)
  * @return {Array<Holiday | SpecialDay>} Array of day info objects
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#getalldays
  */
 export const getAllDays = function (year?: number, month?: number) {
   if (year == null) {
@@ -34,31 +37,40 @@ export const getAllDays = function (year?: number, month?: number) {
 };
 
 /**
- * Returns all official Icelandic holidays (non-working days).
+ * Returns all official Icelandic public holidays (non-working days)
+ * for a given year — optionally narrowed down to a single month.
  *
  * @param  {number}  [year]  Year to get results for. Defaults to the current year
  * @param  {number}  [month]  Month to get results for (1-based, where January is 1 and December is 12)
  * @return {Array<Holiday>} Array of day info objects
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#getholidays
  */
 export const getHolidays = (year?: number, month?: number) =>
   getAllDays(year, month).filter((day): day is Holiday => day.holiday);
 
 /**
- * Returns only unofficial "holidays"/"special days" that are still workdays.
+ * Returns only unofficial, commonly celebrated "special days" (that are still
+ * workdays) for a given year — optionally narrowed down to a single month.
  *
  * @param  {number}  [year]  Year to get results for. Defaults to the current year
  * @param  {number}  [month]  Month to get results for (1-based, where January is 1 and December is 12)
  * @return {Array<SpecialDay>} Array of day info objects
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#getotherdays
  */
 export const getOtherDays = (year?: number, month?: number) =>
   getAllDays(year, month).filter((day): day is SpecialDay => !day.holiday);
 
 /**
- * Checks if a given date is either an official or unofficial holiday
+ * Checks if a given date is either an Icelandic public holiday
+ * or a commonly celebrated "special" day,
  * and if so, returns its info object.
  *
  * @param  {Date}  date  Date to check
  * @return {Holiday | SpecialDay | undefined} Date info or undefined
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#isspecialday
  */
 export const isSpecialDay = (date: Date) => {
   let dateMs = date.getTime();
@@ -69,11 +81,13 @@ export const isSpecialDay = (date: Date) => {
 };
 
 /**
- * Checks if a given date is an official holiday
+ * Checks if a given date is an Icelandic public holiday,
  * and if so, returns its info object.
  *
  * @param  {Date}  date  Date to check
  * @return {Holiday | undefined} Date info or undefined
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#isholiday
  */
 export const isHoliday = (date: Date) => {
   const dayInfo = isSpecialDay(date);
@@ -81,7 +95,7 @@ export const isHoliday = (date: Date) => {
 };
 
 /**
- * Returns the `days`-th working day before/after the reference date.
+ * Returns the `days`-th business-day before/after the reference date.
  *
  * Defaults to counting half-day holidays as "non-work" days.
  *
@@ -89,6 +103,8 @@ export const isHoliday = (date: Date) => {
  * @param  {Date}  [refDate]  The reference date to start couting from. (Defaults to current day.)
  * @param  {boolean}  [includeHalfDays]  Whether to include half-day holidays as workdays. (Default `false`.)
  * @return {Date} The resolved workday
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#workdaysfromdate
  */
 export const workdaysFromDate = (
   days: number,
