@@ -259,4 +259,4 @@ PRs are welcoms!
 
 ## Change Log
 
-See [CHANGELOG.md](./CHANGELOG.md)
+See [CHANGELOG.md](https://github.com/gaui/fridagar-node/blob/dev/CHANGELOG.md)
