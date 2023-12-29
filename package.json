@@ -2,9 +2,6 @@
   "name": "fridagar",
   "version": "3.2.0",
   "description": "Small library for looking up Icelandic public holidays and other commonly observed 'special' days.",
-  "main": "fridagar.js",
-  "private": true,
-  "type": "module",
   "contributors": [
     "Bjarki Gunnarsson (https://github.com/bjarkig82)",
     "Guðjón Jónsson (https://github.com/gaui)",
@@ -16,6 +13,8 @@
     "@types/bun": "^1.0.0",
     "typescript": "^5.3.3"
   },
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "bun test --watch",
     "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1",
@@ -36,6 +35,8 @@
     "hxmstyle": null,
     "engines": null,
     "sideEffects": false,
+
+    "main": "fridagar.js",
     "exports": {
       ".": {
         "import": "./esm/index.js",
