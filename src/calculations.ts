@@ -191,7 +191,7 @@ export const calcSpecialDays = (year: number) => {
         holiday: true,
       },
       {
-        date: new Date(easterSundayMs + dayMs),
+        date: new Date(easterSundayMs + 1 * dayMs),
         description: "Annar í páskum",
         key: "paska2",
         holiday: true,
@@ -200,6 +200,12 @@ export const calcSpecialDays = (year: number) => {
         date: findNextWeekDay(year, 3, 19, 4),
         description: "Sumardagurinn fyrsti",
         key: "sumar1",
+        holiday: true,
+      },
+      {
+        date: new Date(year, 4, 1),
+        description: "Verkalýðsdagurinn",
+        key: "mai1",
         holiday: true,
       },
       {
@@ -218,12 +224,6 @@ export const calcSpecialDays = (year: number) => {
         date: new Date(easterSundayMs + 50 * dayMs),
         description: "Annar í Hvítasunnu",
         key: "hvitas2",
-        holiday: true,
-      },
-      {
-        date: new Date(year, 4, 1),
-        description: "Verkalýðsdagurinn",
-        key: "mai1",
         holiday: true,
       },
       {
