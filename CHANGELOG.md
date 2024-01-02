@@ -13,6 +13,7 @@
   - fix: Always return new `Date` object
   - fix: Correctly cross year boundries
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
+- feat: Returns special days sorted in correct date order
 - feat: Shorten name/description of `jun17` to "Þjóðhátíðardagurinn"
 - fix: Handle `0` value year and month arguments correctly
 - perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)

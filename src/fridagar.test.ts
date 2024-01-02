@@ -110,6 +110,17 @@ process.env.TZ = "Asia/Yangon";
 // ---------------------------------------------------------------------------
 
 describe("getAllDays", () => {
+  [2011, 2023, 2024].forEach((year) => {
+    test(`returns a sorted array → ${year}`, () => {
+      const days = getAllDays(year);
+      const keys = days.map((day) => day.key);
+      const sortedKeys = days
+        .toSorted((a, b) => a.date.getTime() - b.date.getTime())
+        .map((day) => day.key);
+      expect(keys.join(",")).toBe(sortedKeys.join(","));
+    });
+  });
+
   test("finds soltice days in 2023", () => {
     const days = getAllDays(2023);
 

@@ -302,6 +302,16 @@ export const calcSpecialDays = (year: number) => {
       },
     ] as const satisfies Array<Holiday | SpecialDay>;
 
+    _holidays.sort((a, b) => (
+        a.date.getTime() - b.date.getTime() ||
+        // Sort holidays ahead of special days (this never happens in practice)
+        // but just to be sure, as we want `isHoliday()` (and other dumb/simple
+        // seek/find functions) to return the holiday info object as the first
+        // result.
+        (a.holiday === b.holiday ? 0 : a.holiday ? 1 : -1)
+      )
+    );
+
     // Tree-shakable no-op variable that asserts that the manually crafted
     // `_holidays` array uses every `HolidayKey` and `SpecialDayKey` value.
     const _NoKeyLeftBehind_: (typeof _holidays)[number]["key"] = "" as
