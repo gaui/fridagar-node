@@ -113,8 +113,8 @@ let solsticeBaseSummer: number;
 let solsticeBaseWinter: number;
 const solstice = (year: number, season?: "winter" | "summer") => {
   if (!solsticeBaseSummer) {
-    solsticeBaseSummer = new Date(2016, 11, 21, 10, 44).getTime();
-    solsticeBaseWinter = new Date(2016, 5, 20, 22, 34).getTime();
+    solsticeBaseSummer = new Date(2016, 5, 20,22,34).getTime();
+    solsticeBaseWinter = new Date(2016, 11,21,10,44).getTime();
   }
   let time = season === "winter" ? solsticeBaseWinter : solsticeBaseSummer;
   time = time + solsticeInterval * (year - 2016);

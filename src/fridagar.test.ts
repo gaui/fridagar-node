@@ -105,6 +105,22 @@ const D = (t: string | number) => new Date(t);
 
 // ---------------------------------------------------------------------------
 
+describe("getAllDays", () => {
+  test("finds soltice days in 2023", () => {
+    const days = getAllDays(2023);
+
+    const sumsolst = days.find((day) => day.key === "sumsolst");
+    expect(sumsolst).toBeDefined();
+    expect(sumsolst!.date.toISOString()).toStartWith("2023-06-21");
+
+    const vetsolst = days.find((day) => day.key === "vetsolst");
+    expect(vetsolst).toBeDefined();
+    expect(vetsolst!.date.toISOString()).toStartWith("2023-12-22");
+  });
+});
+
+// ---------------------------------------------------------------------------
+
 describe("isSpecialDay", () => {
   test("special days in 2023-12", () => {
     expect(!!isSpecialDay(D("2023-12-25"))).toBe(true);
