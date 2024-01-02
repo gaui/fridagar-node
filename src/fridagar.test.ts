@@ -187,7 +187,7 @@ describe("workdaysFromDate", () => {
     // return full ISO datetime if it's not exactly at MIDNIGHT
     return isoDate.endsWith(MIDNIGHT) ? isoDate.slice(0, 10) : isoDate;
   };
-  
+
   const today = new Date();
   test("finds future days", () => {
     expect(workDaysISO(2, D("2023-12-06" /* Wed */))).toBe("2023-12-08");
