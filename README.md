@@ -11,6 +11,8 @@ depending on need.
 All day names/descriptions are in Icelandic, but each day has a stable `key`
 prop that can be used when translating its name into other languages.
 
+All returned dates are in the UTC timezone and set to midnight.
+
 ```
 npm install fridagar
 ```

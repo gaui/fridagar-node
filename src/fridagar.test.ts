@@ -39,6 +39,10 @@ const D = (t: string | number) => new Date(t);
 
 // ---------------------------------------------------------------------------
 
+// Set timezone to something far away from UTC to make sure tests don't depend on local time
+process.env.TZ = "Asia/Yangon";
+// process.env.TZ = 'UTC'; // `bun test` uses the UTC TZ by default
+
 [
   { method: getAllDays },
   { method: getHolidays, isHoliday: true },

@@ -3,6 +3,8 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+- **BREAKING** feat: Set all dates to UTC instead of local time
+- fix: Set summer and winter solstice date timestamp to midnight
 - feat: Add `key` prop to the day info objects to aid translations
 - feat: Export string union types `HolidayKey` and `SpecialDayKey`
 - `workdaysFromDate` improvements:
@@ -12,7 +14,6 @@
   - fix: Correctly cross year boundries
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
 - feat: Shorten name/description of `jun17` to "Þjóðhátíðardagurinn"
-- fix: Set summer and winter solstice date timestamp to midnight
 - fix: Handle `0` value year and month arguments correctly
 - perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)
 - docs: Add a proper README with code examples for all methods and types.
