@@ -1,6 +1,6 @@
 # Frídagar
 
-Small, fast library for looking up Icelandic public holidays, and resolving 
+Small, fast JavaScript/TypeScript library for looking up Icelandic public holidays, and resolving 
 business days before/after a given day. It also provides info about other 
 commonly observed "special" days such as "Bolludagur", etc.
 

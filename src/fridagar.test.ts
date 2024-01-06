@@ -17,7 +17,7 @@ import type {
 
 if (false as boolean) {
   // Type tests/assertsions
-  // to make sure the package exposes all the intended method and type exports
+  // Make sure the package exposes all the intended method and type exports
   const exports: Record<keyof typeof fridagar, true> = {
     getAllDays: true,
     getHolidays: true,
