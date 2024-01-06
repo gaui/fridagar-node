@@ -6,6 +6,7 @@
     "target": "ES2017",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "noEmit": true,
 
     "strict": true, // Don't be daft. Always be strict.

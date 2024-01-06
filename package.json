@@ -20,7 +20,8 @@
     "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1",
     "publish:lib": "bun run build  &&  bun npm-publish.ts",
     "build": "bun test  &&  bun build.ts",
-    "test": "bun test"
+    "check:types": "tsc --project tsconfig.json --noEmit --pretty --incremental false",
+    "test": "bun run check:types  &&  bun test"
   },
   "engines": {
     "node": "9999. Please use bun",
