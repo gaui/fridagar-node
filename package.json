@@ -16,17 +16,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun test --watch",
+    "dev": "bun install  &&  bun test --watch",
+    "build": "bun install  &&  bun run test  &&  bun build.ts",
+    "test": "bun run check  &&  bun test",
     "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1",
     "publish:lib": "bun run build  &&  bun npm-publish.ts",
-    "build": "bun test  &&  bun build.ts",
-    "check:types": "tsc --project tsconfig.json --noEmit --pretty --incremental false",
-    "test": "bun run check:types  &&  bun test"
+    "check": "yarn run check:types",
+    "check:types": "tsc --project tsconfig.json --noEmit --pretty --incremental false"
   },
   "engines": {
+    "bun": "^1.0.20",
     "node": "9999. Please use bun",
     "npm": "9999. Please use bun",
-    "bun": "^1.0.20"
+    "yarn": "9999. Please use bun"
   },
   "dist_package_json": {
     "type": null,

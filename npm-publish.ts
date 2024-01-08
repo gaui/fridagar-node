@@ -1,5 +1,5 @@
-import { execSync } from "child_process";
 import { version } from "./package.json";
+import { execSync } from "node:child_process";
 
 const dist = "_npm-lib";
 
