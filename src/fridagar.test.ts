@@ -15,9 +15,13 @@ import type {
   SpecialDayKey,
 } from "./fridagar.js";
 
+// ===========================================================================
+// Test Type Signature and Exports
+
 if (false as boolean) {
-  // Type tests/assertsions
-  // Make sure the package exposes all the intended method and type exports
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+
+  // Make sure the module exports are as advertised
   const exports: Record<keyof typeof fridagar, true> = {
     getAllDays: true,
     getHolidays: true,
@@ -26,18 +30,27 @@ if (false as boolean) {
     isHoliday: true,
     isSpecialDay: true,
   };
+
+  type Holiday_is_exported = Holiday;
+  type SpecialDay_is_exported = SpecialDay;
+  type HolidayKey_is_exported = HolidayKey;
+  type SpecialDayKey_is_exported = SpecialDayKey;
+
   const foo1: Array<Holiday | SpecialDay> = getAllDays();
   const foo2: Array<Holiday> = getHolidays();
   const foo3: Array<SpecialDay> = getOtherDays();
   const foo4: HolidayKey | SpecialDayKey = "jun17";
+
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 }
+
+// ===========================================================================
+// Test Individual Functions
 
 const MIDNIGHT = "T00:00:00.000Z";
 
 /** Shorthand for new Date() */
 const D = (t: string | number) => new Date(t);
-
-// ---------------------------------------------------------------------------
 
 // Set timezone to something far away from UTC to make sure tests don't depend on local time
 process.env.TZ = "Asia/Yangon";
