@@ -134,6 +134,15 @@ describe("getAllDays", () => {
     });
   });
 
+  test("Handles rímspilliár", () => {
+    const bonda2023 = getAllDays(2023).find((day) => day.key === "bonda");
+    expect(bonda2023!.date.toISOString()).toStartWith("2023-01-20");
+    const bonda2024 = getAllDays(2024).find((day) => day.key === "bonda");
+    expect(bonda2024!.date.toISOString()).toStartWith("2024-01-26");
+    const bonda2025 = getAllDays(2025).find((day) => day.key === "bonda");
+    expect(bonda2025!.date.toISOString()).toStartWith("2025-01-24");
+  });
+
   test("finds soltice days in 2023", () => {
     const days = getAllDays(2023);
 
