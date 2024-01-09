@@ -35,6 +35,7 @@ export type SpecialDayKey =
   | "osku"
   | "valent"
   | "konu"
+  | "sjomanna"
   | "sumsolst"
   | "jonsm"
   | "hrekkja"
@@ -228,6 +229,12 @@ export const calcSpecialDays = (year: number) => {
         description: "Annar í Hvítasunnu",
         key: "hvitas2",
         holiday: true,
+      },
+      {
+        date: findNextWeekDay(year, 5, 1, 0),
+        description: "Sjómannadagurinn",
+        key: "sjomanna",
+        holiday: false,
       },
       {
         date: new Date(Date.UTC(year, 5, 17)),
