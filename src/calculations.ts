@@ -126,7 +126,10 @@ const yearCache: Record<number, Array<Holiday | SpecialDay>> = {};
 export const calcSpecialDays = (year: number) => {
   let holidays = yearCache[year];
   if (!holidays) {
-    const bondadagur = findNextWeekDay(year, 0, 19, 5);
+    const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+    const rimspillir =
+      isLeapYear && new Date(year - 2, 11, 31).getDay() === 6 ? 1 : 0;
+    const bondadagur = findNextWeekDay(year, 0, 19 + rimspillir, 5);
     const easterSunday = easter(year);
     const easterSundayMs = easterSunday.getTime();
     const _holidays = [
