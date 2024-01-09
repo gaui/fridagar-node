@@ -80,6 +80,10 @@ export type SpecialDay = {
 
 export const dayMs = 24 * 3600 * 1000;
 
+/**
+ * Performs the magic calculations required to resovle the date of
+ * Easter Sunday for a given year.
+*/
 const easter = (year: number) => {
   const a = year % 19;
   const b = Math.floor(year / 100);
@@ -100,6 +104,11 @@ const easter = (year: number) => {
 };
 
 const _rimspillirCache: Record<number, 1 | 0> = {};
+/**
+ * Returns 1 if the given year is a "Rímspilliár" year, 0 otherwise.
+ * This return value is then used shift the base/reference date for
+ * certain special days.
+*/
 const rimspillir = (year: number): 1 | 0 => {
   if (_rimspillirCache[year] === undefined) {
     const nextYear = year + 1;
@@ -112,8 +121,14 @@ const rimspillir = (year: number): 1 | 0 => {
   return _rimspillirCache[year]!;
 };
 
+/**
+ * Finds the next weekday after a given date, possibly on the date.
+ * 
+ * Weekdays are indexed 0-6, where 0 is Sunday, 1 is Monday, etc.
+*/
 const findNextWeekDay = (
   year: number,
+  /** 0-based month index */
   month: number,
   day: number,
   targetWDay: number
@@ -135,6 +150,8 @@ const solstice = (year: number, season?: "winter" | "summer") => {
   time = time + solsticeInterval * (year - 2016);
   return new Date(time - (time % dayMs));
 };
+
+// ===========================================================================
 
 const yearCache: Record<number, Array<Holiday | SpecialDay>> = {};
 
