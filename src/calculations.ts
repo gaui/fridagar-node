@@ -38,6 +38,7 @@ export type SpecialDayKey =
   | "sjomanna"
   | "sumsolst"
   | "jonsm"
+  | "vetur1"
   | "hrekkja"
   | "fullv"
   | "vetsolst"
@@ -98,6 +99,19 @@ const easter = (year: number) => {
   return new Date(Date.UTC(year, easterMonth - 1, easterDay));
 };
 
+const _rimspillirCache: Record<number, 1 | 0> = {};
+const rimspillir = (year: number): 1 | 0 => {
+  if (_rimspillirCache[year] === undefined) {
+    const nextYear = year + 1;
+    const nextIsLeapYear =
+      nextYear % 4 === 0 && (nextYear % 100 !== 0 || nextYear % 400 === 0);
+    const isRimspilliar =
+      nextIsLeapYear && new Date(year - 1, 11, 31).getDay() === 6;
+    _rimspillirCache[year] = isRimspilliar ? 1 : 0;
+  }
+  return _rimspillirCache[year]!;
+};
+
 const findNextWeekDay = (
   year: number,
   month: number,
@@ -127,10 +141,7 @@ const yearCache: Record<number, Array<Holiday | SpecialDay>> = {};
 export const calcSpecialDays = (year: number) => {
   let holidays = yearCache[year];
   if (!holidays) {
-    const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
-    const rimspillir =
-      isLeapYear && new Date(year - 2, 11, 31).getDay() === 6 ? 1 : 0;
-    const bondadagur = findNextWeekDay(year, 0, 19 + rimspillir, 5);
+    const bondadagur = findNextWeekDay(year, 0, 19 + rimspillir(year - 1), 5);
     const easterSunday = easter(year);
     const easterSundayMs = easterSunday.getTime();
     const _holidays = [
@@ -259,6 +270,12 @@ export const calcSpecialDays = (year: number) => {
         description: "Frídagur verslunarmanna",
         key: "verslm",
         holiday: true,
+      },
+      {
+        date: findNextWeekDay(year, 9, 21 + rimspillir(year), 6),
+        description: "Fyrsti vetrardagur",
+        key: "vetur1",
+        holiday: false,
       },
       {
         date: new Date(Date.UTC(year, 9, 31)),

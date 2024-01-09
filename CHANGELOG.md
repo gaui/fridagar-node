@@ -15,9 +15,10 @@
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
 - feat: Returns special days sorted in correct date order
 - feat: Add `sjomanna` special day ("Sjómannadagurinn")
+- feat: Add `vetur1` special day ("Fyrsti vetrardagur")
 - feat: Shorten name/description of `jun17` to "Þjóðhátíðardagurinn"
 - fix: Handle `0` value year and month arguments correctly
-- fix: Correctly handle rímspilliar shifting `bonda` and `konu` days
+- fix: Correctly handle rímspilliár (affect days `bonda`, `konu` and `vetur1`)
 - perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)
 - docs: Add a proper README with code examples for all methods and types.
 - docs: Improve inline JSDoc comments

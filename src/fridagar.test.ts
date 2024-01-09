@@ -141,6 +141,13 @@ describe("getAllDays", () => {
     expect(bonda2024!.date.toISOString()).toStartWith("2024-01-26");
     const bonda2025 = getAllDays(2025).find((day) => day.key === "bonda");
     expect(bonda2025!.date.toISOString()).toStartWith("2025-01-24");
+
+    const vetrardf2023 = getAllDays(2023).find((day) => day.key === "vetur1");
+    expect(vetrardf2023!.date.toISOString()).toStartWith("2023-10-28");
+    const vetrardf2024 = getAllDays(2024).find((day) => day.key === "vetur1");
+    expect(vetrardf2024!.date.toISOString()).toStartWith("2024-10-26");
+    const vetrardf2025 = getAllDays(2025).find((day) => day.key === "vetur1");
+    expect(vetrardf2025!.date.toISOString()).toStartWith("2025-10-25");
   });
 
   test("finds soltice days in 2023", () => {
