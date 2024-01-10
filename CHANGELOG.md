@@ -3,23 +3,38 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
-- **BREAKING** feat: Set all dates to UTC instead of local time
-- fix: Set summer and winter solstice date timestamp to midnight
+  **New Features:**
 - feat: Add `key` prop to the day info objects to aid translations
-- feat: Export string union types `HolidayKey` and `SpecialDayKey`
-- `workdaysFromDate` improvements:
-  - feat: Handle negative day offsets, for "n-th workday _before_ {Date}"
-  - feat: Add third `includeHalfDays` boolean parameter
-  - fix: Always return new `Date` object
-  - fix: Correctly cross year boundries
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
-- feat: Returns special days sorted in correct date order
-- feat: Add `sjomanna` special day ("Sjómannadagurinn")
-- feat: Add `vetur1` special day ("Fyrsti vetrardagur")
-- feat: Shorten name/description of `jun17` to "Þjóðhátíðardagurinn"
+- feat: Export string union types `HolidayKey` and `SpecialDayKey`
+- feat: Add "Sjómannadagurinn" (non-holiday)
+- feat: Add "Fyrsti vetrardagur" (non-holiday)
+
+**Changes:**
+
+- **BREAKING** feat: Set all dates to UTC instead of local time. (You may 
+  need to update your code to handle this change, possibly by manually 
+  applying the local timezone offset to the returned dates.)
+- feat: Handle negative `workdaysFromDate` offsets (for "n-th workday
+  _before_ {Date}")
+- feat: Add third `includeHalfDays` boolean parameter to
+  `workdaysFromDate` method
+- feat: Arrays of days are now sorted in correct date order
+- feat: Shorten the description (name) of `jun17` to "Þjóðhátíðardagurinn"
+
+**Bugfixes:**
+
+- fix: Correctly handle rímspilliár (affect days `bonda`, `konu` and
+  `vetur1`)
+- fix: Set summer and winter solstice date timestamp to midnight
+- fix: Always return new `Date` object from `workdaysFromDate`
+- fix: Correctly cross year boundries in `workdaysFromDate`
 - fix: Handle `0` value year and month arguments correctly
-- fix: Correctly handle rímspilliár (affect days `bonda`, `konu` and `vetur1`)
-- perf: Speedup of all operations by a factor between 2 and 40 (especially for multiple quickly repeated lookups)
+
+**Other Improvements:**
+
+- perf: Speed-up of all operations by a factor between 2 and 40
+  (especially for multiple quickly repeated lookups)
 - docs: Add a proper README with code examples for all methods and types.
 - docs: Improve inline JSDoc comments
 - docs/build: Add unit tests for correctness and stability of the library
