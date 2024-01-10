@@ -154,9 +154,16 @@ describe("getAllDays", () => {
     expect(vetrardf2025!.date.toISOString()).toStartWith("2025-10-25");
   });
 
-  test("shifts `sjomanna` when `hvitas` lands in June", () => {
-    const sjomanna17 = getAllDaysKeyed(2017).sjomanna;
-    expect(sjomanna17.date.toISOString()).toStartWith("2017-06-11");
+  test("shifts `sjomanna` when `hvitas` is first Sunday in June", () => {
+    // `hvitas` is first Sunday of June in 2022
+    const sjomanna22 = getAllDaysKeyed(2022).sjomanna;
+    expect(sjomanna22.date.toISOString()).toStartWith("2022-06-12");
+    // `hvitas` is in end of May in 2023
+    const sjomanna23 = getAllDaysKeyed(2023).sjomanna;
+    expect(sjomanna23.date.toISOString()).toStartWith("2023-06-04");
+    // `hvitas` is second Sunday of June in 2025
+    const sjomanna25 = getAllDaysKeyed(2025).sjomanna;
+    expect(sjomanna25.date.toISOString()).toStartWith("2025-06-01");
   });
 
   test("finds soltice days in 2023", () => {

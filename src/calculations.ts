@@ -180,6 +180,8 @@ export const calcSpecialDays = (year: number) => {
     const easterSunday = easter(year);
     const easterSundayMs = easterSunday.getTime();
     const whitsunday = new Date(easterSundayMs + 49 * dayMs);
+    const withsun1stJuneSun =
+      whitsunday.getUTCMonth() === 5 && whitsunday.getUTCDate() < 8;
 
     const _holidays = [
       {
@@ -279,7 +281,7 @@ export const calcSpecialDays = (year: number) => {
         holiday: true,
       },
       {
-        date: findNextWeekDay(year, 5, whitsunday.getUTCMonth() < 5 ? 1 : 8, 0),
+        date: findNextWeekDay(year, 5, withsun1stJuneSun ? 8 : 1, 0),
         description: "Sjómannadagurinn",
         key: "sjomanna",
         holiday: false,
