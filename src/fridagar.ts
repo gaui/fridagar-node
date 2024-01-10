@@ -3,6 +3,7 @@ import type {
   SpecialDay,
   HolidayKey,
   SpecialDayKey,
+  DayKey
 } from "./calculations.js";
 import { calcSpecialDays, dayMs } from "./calculations.js";
 
@@ -11,7 +12,7 @@ const cloneInfo = <T extends Holiday | SpecialDay>(dayInfo: T): T => ({
   date: new Date(dayInfo.date),
 });
 
-export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey };
+export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey, DayKey };
 
 /**
  * Returns all Icelandic public holidays and commonly celebrated "special" days

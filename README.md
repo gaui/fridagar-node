@@ -31,7 +31,7 @@ npm install fridagar
 - [Exported types](#exported-types)
   - [type `Holiday`](#type-holiday)
   - [type `SpecialDay`](#type-specialday)
-  - [type `HolidayKey, SpecialDayKey`](#type-holidaykey-specialdaykey)
+  - [type `DayKey`, `HolidayKey`, `SpecialDayKey`](#type-daykey-holidaykey-specialdaykey)
 - [Contributing](#contributing)
 - [Change Log](#change-log)
 
@@ -87,7 +87,7 @@ const allDaysInDecemberThisYear = getAllDays(undefined, 12);
 ### `getAllDaysKeyed`
 
 **Syntax:**
-`getAllDaysKeyed(year?: number): Record<HolidayKey | SpecialDayKey, Holiday | SpecialDay>`
+`getAllDaysKeyed(year?: number): Record<DayKey, Holiday | SpecialDay>`
 
 Returns a keyed object with Icelandic public holidays and commonly celebrated
 "special" days for a given year. (Defaults to the current year.)
@@ -260,20 +260,31 @@ NOTE: All dates are set to 00:00:00 UTC
 
 ---
 
-### type `HolidayKey, SpecialDayKey`
+### type `DayKey`, `HolidayKey`, `SpecialDayKey`
 
 String union types of all possible `key` values for `Holiday` and
-`SpecialDay` objects. This is mainly useful when translating the day
+`SpecialDay` objects. These are mainly useful when translating the day
 names/descriptions into other languages.
 
 ```ts
-import type { HolidayKey, SpecialDayKey } from "fridagar";
+import type { DayKey, HolidayKey, SpecialDayKey } from "fridagar";
 
-const dayNamesPolish: Record<HolidayKey | SpecialDayKey, string> = {
+const holidayNamesPolish: Record<HolidayKey, string> = {
   nyars: "Nowy Rok",
   adfanga: "Wigilia",
   jola: "Boże Narodzenie",
-  // Etc...
+  // etc...
+};
+const specialDayNamesPolish: Record<SpecialDayKey, string> = {
+  bollu: "Dzień Pączka",
+  sjomanna: "Dzień Marynarza",
+  // etc...
+};
+
+// DayKey is a shorthand union of HolidayKey and SpecialDayKey
+const allDayNamesPolish: Record<DayKey, string> = {
+  ...holidayNamesPolish,
+  ...specialDayNamesPolish,
 };
 ```
 

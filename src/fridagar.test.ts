@@ -14,6 +14,7 @@ import type {
   SpecialDay,
   HolidayKey,
   SpecialDayKey,
+  DayKey,
 } from "./fridagar.js";
 
 // ===========================================================================
@@ -37,6 +38,7 @@ if (false as boolean) {
   type SpecialDay_is_exported = SpecialDay;
   type HolidayKey_is_exported = HolidayKey;
   type SpecialDayKey_is_exported = SpecialDayKey;
+  type DayKey_is_exported = DayKey;
 
   const foo1: Array<Holiday | SpecialDay> = getAllDays();
   const foo2: Array<Holiday> = getHolidays();

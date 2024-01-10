@@ -7,7 +7,7 @@
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
 - feat: Add `key` prop to the day info objects to aid translations
 - feat: Add method `getAllDaysKeyed` to return all days keyed by `key`
-- feat: Export string union types `HolidayKey` and `SpecialDayKey`
+- feat: Export string types `HolidayKey`, `SpecialDayKey` and `DayKey`
 - feat: Add "Sjómannadagurinn" (non-holiday)
 - feat: Add "Fyrsti vetrardagur" (non-holiday)
 

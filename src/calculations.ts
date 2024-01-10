@@ -2,7 +2,7 @@
  * Identifiers for Icelandic public holidays.
  * Useful for building translations.
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#type-holidaykey-specialdaykey
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-daykey-holidaykey-specialdaykey
  */
 export type HolidayKey =
   | "nyars"
@@ -26,7 +26,7 @@ export type HolidayKey =
  * Identifiers for Icelandic commonly celebrated "special" days.
  * Useful for building translations.
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#type-holidaykey-specialdaykey
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-daykey-holidaykey-specialdaykey
  */
 export type SpecialDayKey =
   | "bonda"
@@ -43,6 +43,15 @@ export type SpecialDayKey =
   | "fullv"
   | "vetsolst"
   | "thorl";
+
+
+/**
+ * Indentifier for Icelandic public holidays and commonly celebrated "special"
+ * days.
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#type-daykey-holidaykey-specialdaykey
+ */
+export type DayKey = HolidayKey | SpecialDayKey;
 
 /**
  * An object describing an Icelandic public holiday.
