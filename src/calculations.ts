@@ -179,6 +179,8 @@ export const calcSpecialDays = (year: number) => {
     const bondadagur = findNextWeekDay(year, 0, 19 + rimspillir(year - 1), 5);
     const easterSunday = easter(year);
     const easterSundayMs = easterSunday.getTime();
+    const whitsunday = new Date(easterSundayMs + 49 * dayMs);
+
     const _holidays = [
       {
         date: new Date(Date.UTC(year, 0, 1)),
@@ -265,7 +267,7 @@ export const calcSpecialDays = (year: number) => {
         holiday: true,
       },
       {
-        date: new Date(easterSundayMs + 49 * dayMs),
+        date: whitsunday,
         description: "Hvítasunnudagur",
         key: "hvitas",
         holiday: true,
@@ -277,7 +279,7 @@ export const calcSpecialDays = (year: number) => {
         holiday: true,
       },
       {
-        date: findNextWeekDay(year, 5, 1, 0),
+        date: findNextWeekDay(year, 5, whitsunday.getUTCMonth() < 5 ? 1 : 8, 0),
         description: "Sjómannadagurinn",
         key: "sjomanna",
         holiday: false,
