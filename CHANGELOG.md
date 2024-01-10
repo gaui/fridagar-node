@@ -4,16 +4,17 @@
 
 - ... <!-- Add new lines here. -->
   **New Features:**
-- feat: Add `key` prop to the day info objects to aid translations
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
+- feat: Add `key` prop to the day info objects to aid translations
+- feat: Add method `getAllDaysKeyed` to return all days keyed by `key`
 - feat: Export string union types `HolidayKey` and `SpecialDayKey`
 - feat: Add "Sjómannadagurinn" (non-holiday)
 - feat: Add "Fyrsti vetrardagur" (non-holiday)
 
 **Changes:**
 
-- **BREAKING** feat: Set all dates to UTC instead of local time. (You may 
-  need to update your code to handle this change, possibly by manually 
+- **BREAKING** feat: Set all dates to UTC instead of local time. (You may
+  need to update your code to handle this change, possibly by manually
   applying the local timezone offset to the returned dates.)
 - feat: Handle negative `workdaysFromDate` offsets (for "n-th workday
   _before_ {Date}")

@@ -23,6 +23,7 @@ npm install fridagar
 - [Methods](#methods)
   - [`getHolidays`](#getholidays)
   - [`getAllDays`](#getalldays)
+  - [`getAllDaysKeyed`](#getalldayskeyed)
   - [`getOtherDays`](#getotherdays)
   - [`isHoliday`](#isholiday)
   - [`isSpecialDay`](#isspecialday)
@@ -79,6 +80,32 @@ const allDaysInDecember2018 = getAllDays(2018, 12);
 // If year is omitted the current year is used
 const allDaysThisYear = getAllDays();
 const allDaysInDecemberThisYear = getAllDays(undefined, 12);
+```
+
+---
+
+### `getAllDaysKeyed`
+
+**Syntax:**
+`getAllDaysKeyed(year?: number): Record<HolidayKey | SpecialDayKey, Holiday | SpecialDay>`
+
+Returns a keyed object with Icelandic public holidays and commonly celebrated
+"special" days for a given year. (Defaults to the current year.)
+
+```ts
+import type { Holiday, SpecialDay } from "fridagar";
+import { getAllDaysKeyed } from "fridagar";
+
+const allDays1995 = getAllDaysKeyed(1995);
+
+// Note that the days are correctly typed
+const easter95: Holiday = allDays1995.paska;
+const ashWed95: SpecialDay = allDays1995.osku;
+
+console.log(easter95.date);
+// Logs new Date('1995-04-23')
+console.log(easter95.description);
+// Logs "Páskadagur"
 ```
 
 ---

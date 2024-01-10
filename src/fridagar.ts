@@ -37,6 +37,24 @@ export const getAllDays = function (year?: number, month?: number) {
 };
 
 /**
+ * Returns a keyed object with Icelandic public holidays and commonly celebrated
+ * "special" days for a given year
+ *
+ * @param  {number}  [year]  Year to get results for. Defaults to the current year
+- * @return {Record<HolidayKey| SpecialDayKey, Holiday | SpecialDay>} Array of day info objects
+ *
+ * @see https://github.com/gaui/fridagar-node/tree/v3#getalldays
+ */
+export const getAllDaysKeyed = (year?: number) => {
+  const days: Record<string, unknown> = {};
+  for (const day of getAllDays(year)) {
+    days[day.key] = day;
+  }
+  return days as Record<HolidayKey, Holiday> &
+    Record<SpecialDayKey, SpecialDay>;
+};
+
+/**
  * Returns all official Icelandic public holidays (non-working days)
  * for a given year — optionally narrowed down to a single month.
  *

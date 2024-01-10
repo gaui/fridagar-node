@@ -6,6 +6,7 @@ import {
   getHolidays,
   getOtherDays,
   getAllDays,
+  getAllDaysKeyed,
 } from "./fridagar.js";
 import * as fridagar from "./fridagar.js";
 import type {
@@ -24,6 +25,7 @@ if (false as boolean) {
   // Make sure the module exports are as advertised
   const exports: Record<keyof typeof fridagar, true> = {
     getAllDays: true,
+    getAllDaysKeyed: true,
     getHolidays: true,
     getOtherDays: true,
     workdaysFromDate: true,
@@ -160,6 +162,34 @@ describe("getAllDays", () => {
     const vetsolst = days.find((day) => day.key === "vetsolst");
     expect(vetsolst).toBeDefined();
     expect(vetsolst!.date.toISOString()).toStartWith("2023-12-22");
+  });
+});
+
+// ---------------------------------------------------------------------------
+
+describe("getAllDaysKeyed", () => {
+  const days2024 = getAllDaysKeyed(2024);
+  // Values are narrowed to the correct type
+  const bonda2024: SpecialDay = days2024.bonda;
+  const adfanga2024: Holiday = days2024.adfanga;  
+
+  test("returns a keyed object", () => {
+    const days2024b = getAllDaysKeyed(2024);
+    expect(days2024).toBeDefined();
+    expect(bonda2024.description).toBe("Bóndadagur");
+    expect(adfanga2024.description).toBe("Aðfangadagur");
+  });
+  test("returns new object every time", () => {
+    const days2024b = getAllDaysKeyed(2024);
+    expect(days2024).toMatchObject(days2024b);
+    expect(days2024).not.toBe(days2024b);
+    expect(bonda2024).not.toBe(days2024b.bonda);
+  });
+  test("defaults to the current year", () => {
+    setSystemTime(D(`2000-06-30T12:34:56`));
+    const currentYearDays = getAllDaysKeyed();
+    expect(currentYearDays.paska2.date.getUTCFullYear()).toBe(2000);
+    setSystemTime();
   });
 });
 
