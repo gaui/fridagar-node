@@ -1,8 +1,9 @@
 # Frídagar
 
-Small, fast JavaScript/TypeScript library for looking up Icelandic public holidays, and resolving 
-business days before/after a given day. It also provides info about other 
-commonly observed "special" days such as "Bolludagur", etc.
+Small, fast JavaScript/TypeScript library for looking up Icelandic public 
+holidays, and resolving business days before/after a given day. It also 
+provides info about other commonly observed "special" days such as 
+"Bolludagur", etc.
 
 "Half day" holidays (such as Christmas and New Year's Eve) are marked as
 such, and can be optionally treated as either "work days" or "non-work days",
@@ -63,9 +64,10 @@ const holidaysInDecemberThisYear = getHolidays(undefined, 12);
 
 ### `getAllDays`
 
-**Syntax:** `getAlldays(year?: number, month?: number): Array<Holiday | SpecialDay>`
+**Syntax:**
+`getAlldays(year?: number, month?: number): Array<Holiday | SpecialDay>`
 
-Returns all official Icelandic public holidays (non-working days) for a 
+Returns all official Icelandic public holidays (non-working days) for a
 given year — optionally narrowed down to a single month.
 
 ```ts
@@ -164,7 +166,7 @@ const jan1st2025 = new Date("2024-01-01"); // Tuesday
 
 // Treats Aðfangadagur as a non-work day by default
 const secondWorkDay = workdaysFromDate(2, dec23th2018);
-// new Date('2021-12-28') // Tuesday 
+// new Date('2021-12-28') // Tuesday
 
 // Optionally treats Aðfangadagur as a work day
 const secondWorkDayInclHalfDay = workdaysFromDate(2, dec23th2018, true);
@@ -198,7 +200,7 @@ import type { Holiday } from "fridagar";
 
 // Example
 const xmasEve2017: Holiday = {
-  date: new Date("2017-12-24T00:00:00.000Z"), 
+  date: new Date("2017-12-24T00:00:00.000Z"),
   description: "Aðfangadagur",
   key: "adfanga", // stable identifier for this holiday
   holiday: true,
@@ -233,8 +235,8 @@ NOTE: All dates are set to 00:00:00 UTC
 
 ### type `HolidayKey, SpecialDayKey`
 
-String union types of all possible `key` values for `Holiday` and 
-`SpecialDay` objects. This is mainly useful when translating the day 
+String union types of all possible `key` values for `Holiday` and
+`SpecialDay` objects. This is mainly useful when translating the day
 names/descriptions into other languages.
 
 ```ts
