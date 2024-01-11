@@ -21,11 +21,27 @@ const makePackageJson = async (
 
 const dist = "_npm-lib";
 
-execSync(`rm -rf ${dist}`);
-execSync(`bun x tsc --project tsconfig.build.json --module commonjs --outDir ${dist}`);
-execSync(`bun x tsc --project tsconfig.build.json --module esnext --outDir ${dist}/esm`);
-execSync(`cp README.md CHANGELOG.md ${dist}`);
-Promise.all([
-  makePackageJson(dist),
-  Bun.write(`${dist}/esm/package.json`, JSON.stringify({ type: "module" })),
-]);
+try {
+  execSync(`rm -rf ${dist}`);
+  execSync(
+    `bun x tsc --project tsconfig.build.json --module commonjs --outDir ${dist}`
+  );
+  execSync(
+    `bun x tsc --project tsconfig.build.json --module esnext --outDir ${dist}/esm`
+  );
+  execSync(`cp README.md CHANGELOG.md ${dist}`);
+
+  Promise.all([
+    makePackageJson(dist),
+    Bun.write(`${dist}/esm/package.json`, JSON.stringify({ type: "module" })),
+  ]);
+} catch (err) {
+  console.info("--------------------------");
+  const { message, output } = err as {
+    message?: string;
+    output?: Array<Buffer>;
+  };
+  console.error(output ? output.join("\n").trim() : message || err);
+  console.trace(err); // eslint-disable-line no-console
+  process.exit(1);
+}
