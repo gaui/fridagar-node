@@ -50,7 +50,7 @@ function solstice(year, season) {
     date.setTime(date.getTime() - interval);
   }
 
-  return date;
+  return new Date(date.toISOString().slice(0,10));
 }
 
 exports.holidays = holidays;

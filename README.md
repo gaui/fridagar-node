@@ -53,6 +53,16 @@ JSON.stringify(notableDays2018) === [
 
 ## Changelog
 
+### Upcoming...
+- `workdaysFromDate` improvements:
+  - Fix: Always return new `Date` object
+  - fix: Correctly cross year boundries
+  - Handle negative day offsets, for "n-th workday _before_ {Date}"
+  - Add third `includeHalfDays` boolean parameter
+- Fix: Set summer and winter solstice date timestamp to 00:00
+- Add convenience methods `isHoliday` and `isSpecialDay`
+- Better support for named `import`s from esm projects (`pkg.type === 'module'`)
+
 ### 3.2.0
 _2021-07-14_
 - Add TypeScript type definitions
