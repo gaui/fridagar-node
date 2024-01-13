@@ -3,7 +3,13 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
-  **New Features:**
+
+## 4.0.0
+
+_2024-01-13_
+
+**New Features:**
+
 - feat: Add convenience methods `isHoliday` and `isSpecialDay`
 - feat: Add `key` prop to the day info objects to aid translations
 - feat: Add method `getAllDaysKeyed` to return all days keyed by `key`
