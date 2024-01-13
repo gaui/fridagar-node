@@ -3,6 +3,7 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+- feat: Add "Þrettándinn" (non-holiday)
 
 ## 4.0.0
 

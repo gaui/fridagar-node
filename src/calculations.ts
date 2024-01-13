@@ -29,6 +29,7 @@ export type HolidayKey =
  * @see https://github.com/gaui/fridagar-node/tree/v4#type-daykey-holidaykey-specialdaykey
  */
 export type SpecialDayKey =
+  | "þrettand"
   | "bonda"
   | "bollu"
   | "sprengi"
@@ -189,6 +190,12 @@ export const calcSpecialDays = (year: number) => {
         description: "Nýársdagur",
         key: "nyars",
         holiday: true,
+      },
+      {
+        date: new Date(Date.UTC(year, 0, 6)),
+        description: "Þrettándinn",
+        key: "þrettand",
+        holiday: false,
       },
       {
         date: bondadagur,

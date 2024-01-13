@@ -220,6 +220,7 @@ NOTE: The returned date is always set to 00:00:00 UTC.
 These are the supported days and their identification [keys](#type-daykey-holidaykey-specialdaykey):
 
 - **Nýársdagur** (`nyars`)
+- Þrettándinn (`threttand`)
 - Bóndadagur (`bonda`)
 - Bolludagur (`bollu`)
 - Sprengidagur (`sprengi`)
