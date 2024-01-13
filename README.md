@@ -1,8 +1,8 @@
 # Frídagar
 
-Small, fast JavaScript/TypeScript library for looking up Icelandic public 
-holidays, and resolving business days before/after a given day. It also 
-provides info about other commonly observed "special" days such as 
+Small, fast JavaScript/TypeScript library for looking up Icelandic public
+holidays, and resolving business days before/after a given day. It also
+provides info about other commonly observed "special" days such as
 "Bolludagur", etc.
 
 "Half day" holidays (such as Christmas and New Year's Eve) are marked as
@@ -28,6 +28,7 @@ npm install fridagar
   - [`isHoliday`](#isholiday)
   - [`isSpecialDay`](#isspecialday)
   - [`workdaysFromDate`](#workdaysfromdate)
+- [Supported Days](#supported-days)
 - [Exported types](#exported-types)
   - [type `Holiday`](#type-holiday)
   - [type `SpecialDay`](#type-specialday)
@@ -211,6 +212,43 @@ const thirdWorkDayFromToday = workdaysFromDate(3);
 ```
 
 NOTE: The returned date is always set to 00:00:00 UTC.
+
+---
+
+## Supported Days
+
+These are the supported days and their identification [keys](#type-daykey-holidaykey-specialdaykey):
+
+- **Nýársdagur** (`nyars`)
+- Bóndadagur (`bonda`)
+- Bolludagur (`bollu`)
+- Sprengidagur (`sprengi`)
+- Öskudagur (`osku`)
+- Valentínusardagur (`valent`)
+- Konudagur (`konu`)
+- **Skírdagur** (`skir`)
+- **Föstudagurinn langi** (`foslangi`)
+- **Páskadagur** (`paska`)
+- **Annar í páskum** (`paska2`)
+- **Sumardagurinn fyrsti** (`sumar1`)
+- **Verkalýðsdagurinn** (`mai1`)
+- **Uppstigningardagur** (`uppst`)
+- **Hvítasunnudagur** (`hvitas`)
+- **Annar í Hvítasunnu** (`hvitas2`)
+- Sjómannadagurinn (`sjomanna`)
+- **Þjóðhátíðardagurinn** (`jun17`)
+- Sumarsólstöður (`sumsolst`)
+- Jónsmessa (`jonsm`)
+- **Frídagur verslunarmanna** (`verslm`)
+- Fyrsti vetrardagur (`vetur1`)
+- Hrekkjavaka (`hrekkja`)
+- Fullveldisdagurinn (`fullv`)
+- Vetrarsólstöður (`vetsolst`)
+- Þorláksmessa (`thorl`)
+- **Aðfangadagur** (`adfanga`)
+- **Jóladagur** (`jola`)
+- **Annar í Jólum** (`jola2`)
+- **Gamlársdagur** (`gamlars`)
 
 ---
 
