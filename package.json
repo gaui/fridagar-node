@@ -1,6 +1,6 @@
 {
   "name": "fridagar",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Small library for looking up Icelandic public holidays and other commonly observed 'special' days.",
   "contributors": [
     "Bjarki Gunnarsson (https://github.com/bjarkig82)",

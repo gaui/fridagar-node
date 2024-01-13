@@ -3,6 +3,11 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+
+## 4.1.0
+
+_2024-01-13_
+
 - feat: Add "Þrettándinn" (non-holiday)
 
 ## 4.0.0
