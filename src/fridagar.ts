@@ -22,7 +22,7 @@ export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey, DayKey };
  * @param  {number}  [month]  Month to get results for (1-based, where January is 1 and December is 12)
  * @return {Array<Holiday | SpecialDay>} Array of day info objects
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#getalldays
+ * @see https://github.com/gaui/fridagar-node/tree/v4#getalldays
  */
 export const getAllDays = function (year?: number, month?: number) {
   if (year == null) {
@@ -44,7 +44,7 @@ export const getAllDays = function (year?: number, month?: number) {
  * @param  {number}  [year]  Year to get results for. Defaults to the current year
 - * @return {Record<HolidayKey| SpecialDayKey, Holiday | SpecialDay>} Array of day info objects
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#getalldays
+ * @see https://github.com/gaui/fridagar-node/tree/v4#getalldays
  */
 export const getAllDaysKeyed = (year?: number) => {
   const days: Record<string, unknown> = {};
@@ -63,7 +63,7 @@ export const getAllDaysKeyed = (year?: number) => {
  * @param  {number}  [month]  Month to get results for (1-based, where January is 1 and December is 12)
  * @return {Array<Holiday>} Array of day info objects
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#getholidays
+ * @see https://github.com/gaui/fridagar-node/tree/v4#getholidays
  */
 export const getHolidays = (year?: number, month?: number) =>
   getAllDays(year, month).filter((day): day is Holiday => day.holiday);
@@ -76,7 +76,7 @@ export const getHolidays = (year?: number, month?: number) =>
  * @param  {number}  [month]  Month to get results for (1-based, where January is 1 and December is 12)
  * @return {Array<SpecialDay>} Array of day info objects
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#getotherdays
+ * @see https://github.com/gaui/fridagar-node/tree/v4#getotherdays
  */
 export const getOtherDays = (year?: number, month?: number) =>
   getAllDays(year, month).filter((day): day is SpecialDay => !day.holiday);
@@ -89,7 +89,7 @@ export const getOtherDays = (year?: number, month?: number) =>
  * @param  {Date}  date  Date to check
  * @return {Holiday | SpecialDay | undefined} Date info or undefined
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#isspecialday
+ * @see https://github.com/gaui/fridagar-node/tree/v4#isspecialday
  */
 export const isSpecialDay = (date: Date) => {
   let dateMs = date.getTime();
@@ -106,7 +106,7 @@ export const isSpecialDay = (date: Date) => {
  * @param  {Date}  date  Date to check
  * @return {Holiday | undefined} Date info or undefined
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#isholiday
+ * @see https://github.com/gaui/fridagar-node/tree/v4#isholiday
  */
 export const isHoliday = (date: Date) => {
   const dayInfo = isSpecialDay(date);
@@ -123,7 +123,7 @@ export const isHoliday = (date: Date) => {
  * @param  {boolean}  [includeHalfDays]  Whether to include half-day holidays as workdays. (Default `false`.)
  * @return {Date} The resolved workday
  *
- * @see https://github.com/gaui/fridagar-node/tree/v3#workdaysfromdate
+ * @see https://github.com/gaui/fridagar-node/tree/v4#workdaysfromdate
  */
 export const workdaysFromDate = (
   days: number,
