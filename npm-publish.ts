@@ -6,7 +6,7 @@ const dist = "_npm-lib";
 try {
   execSync(
     [
-      `cd v${dist}`,
+      `cd ${dist}`,
       `npm publish`,
       `cd ..`,
       `git add ./package.json ./CHANGELOG.md`,
