@@ -29,6 +29,9 @@ npm install fridagar
   - [`isSpecialDay`](#isspecialday)
   - [`workdaysFromDate`](#workdaysfromdate)
 - [Supported Days](#supported-days)
+  - [Open Questions](#open-questions)
+    - [Which Days to Include?](#which-days-to-include)
+    - [Historical Accuracy](#historical-accuracy)
 - [Exported types](#exported-types)
   - [type `Holiday`](#type-holiday)
   - [type `SpecialDay`](#type-specialday)
@@ -217,7 +220,8 @@ NOTE: The returned date is always set to 00:00:00 UTC.
 
 ## Supported Days
 
-These are the supported days and their identification [keys](#type-daykey-holidaykey-specialdaykey):
+These are the supported days and their identification 
+[keys](#type-daykey-holidaykey-specialdaykey):
 
 - **Nýársdagur** (`nyars`)
 - Þrettándinn (`threttand`)
@@ -251,6 +255,48 @@ These are the supported days and their identification [keys](#type-daykey-holida
 - **Jóladagur** (`jola`)
 - **Annar í Jólum** (`jola2`)
 - **Gamlársdagur** (`gamlars`)
+
+### Open Questions
+
+#### Which Days to Include?
+
+What to include is always subjective.
+
+Currently the list focuses on:
+
+- Official public holidays  (defined in law)
+- Official days of flag-raising ("fánadagar") often to do with national 
+  independence history, etc.
+- Traditional Icelandic cultural "special days", which are a mixture of 
+  centuries old folk-traditions and (Christian) religious culture.
+- Days that are actively celebrated despite not fulfilling any of the above 
+  criteria. (Like "Hrekkjavaka")
+
+This means "Valentínusardagur" is a bit of an oddball in this list.
+It's inclusion begs the question why we don't include other similar days such 
+as "Mæðradagurinn", "Feðradagurinn", or even "Singles Day".
+Or should it be removed?
+
+The "on the fence" category includes:
+
+- Mæðradagurinn & Feðradagurinn
+- Kvennafrídagurinn
+- Bjórdagurinn
+- Beginning/end of Ramadan
+- St. Patrick's Day
+
+#### Historical Accuracy
+
+Example: "Dagur íslenskrar tungu" was first celebrated in 1996. Should 
+`getAllDays(1980)` include it or not?
+
+Problem is that many days don't have a definite starting date, they just faded
+into existence over time. Other days (such as "Mæðradagurinn") have had 
+different dates at different times.
+
+Currently the library does aim for historical accuracy, and will return all
+"modern day" special days for any year — and completely ignore the fact that
+"Frídagur verslunarmanna in the year 345 BC" makes absolutely no sense.
 
 ---
 

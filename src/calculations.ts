@@ -222,12 +222,33 @@ export const calcSpecialDays = (year: number) => {
         key: "osku",
         holiday: false,
       },
+      // NOTE:
+      // "Valentínusardagur" is a bit of an oddball in this list.
+      // Should we remove it? (or deprecate it)
+      // - It's not a public holiday.
+      // - It's not an old tranditional Icelandic special day.
+      // - It's not really a day where Icelanders do much of anything
+      //
+      // Contrast this with: "Hrekkjavaka", which despite being a newly
+      // "imported", has quickly become a day that both children and adults 
+      // look forward to and celebrate with parties, costumes, etc.
+      //
+      // Its inclusion begs the question: Why not add a bunch of other
+      // days as well???
+      //
+      // @see ../README.md#which-days-to-include
       {
         date: new Date(Date.UTC(year, 1, 14)),
         description: "Valentínusardagur",
         key: "valent",
         holiday: false,
       },
+      // {
+      //   date: new Date(Date.UTC(year, 2, 1)),
+      //   description: "Bjórdagurinn",
+      //   key: "bjor",
+      //   holiday: false,
+      // },
       {
         date: new Date(bondadagur.getTime() + 30 * dayMs),
         description: "Konudagur",
@@ -270,6 +291,12 @@ export const calcSpecialDays = (year: number) => {
         key: "mai1",
         holiday: true,
       },
+      // {
+      //   date: findNextWeekDay(year, 4, 8, 0), // 2. sunnudagur í maí
+      //   description: "Mæðradagurinn",
+      //   key: "maedra",
+      //   holiday: false,
+      // },
       {
         date: new Date(easterSundayMs + 39 * dayMs),
         description: "Uppstigningardagur",
@@ -300,6 +327,12 @@ export const calcSpecialDays = (year: number) => {
         key: "jun17",
         holiday: true,
       },
+      // {
+      //   date: new Date(Date.UTC(year, 5, 19)),
+      //   description: "Kvenréttindadagurinn",
+      //   key: "kvenna",
+      //   holiday: false,
+      // },
       {
         date: solstice(year, "summer"),
         description: "Sumarsólstöður",
@@ -330,6 +363,12 @@ export const calcSpecialDays = (year: number) => {
         key: "hrekkja",
         holiday: false,
       },
+      // {
+      //   date: findNextWeekDay(year, 10, 8, 0), // 2. sunnudagur í nóv
+      //   description: "Feðradagurinn",
+      //   key: "fedra",
+      //   holiday: false,
+      // },
       {
         date: new Date(Date.UTC(year, 10, 16)),
         description: "Dagur íslenskrar tungu",
