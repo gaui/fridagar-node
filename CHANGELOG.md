@@ -3,6 +3,11 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+
+## 4.2.0
+
+_2024-01-15_
+
 - feat: Add "Dagur íslenskrar tungu" (non-holiday, but still a "fánadagur")
 
 ## 4.1.0
