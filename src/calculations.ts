@@ -41,6 +41,7 @@ export type SpecialDayKey =
   | "jonsm"
   | "vetur1"
   | "hrekkja"
+  | "isltungu"
   | "fullv"
   | "vetsolst"
   | "thorl";
@@ -327,6 +328,12 @@ export const calcSpecialDays = (year: number) => {
         date: new Date(Date.UTC(year, 9, 31)),
         description: "Hrekkjavaka",
         key: "hrekkja",
+        holiday: false,
+      },
+      {
+        date: new Date(Date.UTC(year, 10, 16)),
+        description: "Dagur íslenskrar tungu",
+        key: "isltungu",
         holiday: false,
       },
       {

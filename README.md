@@ -243,6 +243,7 @@ These are the supported days and their identification [keys](#type-daykey-holida
 - **Frídagur verslunarmanna** (`verslm`)
 - Fyrsti vetrardagur (`vetur1`)
 - Hrekkjavaka (`hrekkja`)
+- Dagur íslenskrar tungu (`isltungu`)
 - Fullveldisdagurinn (`fullv`)
 - Vetrarsólstöður (`vetsolst`)
 - Þorláksmessa (`thorl`)
