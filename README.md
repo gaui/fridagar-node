@@ -294,7 +294,7 @@ Problem is that many days don't have a definite starting date, they just faded
 into existence over time. Other days (such as "Mæðradagurinn") have had 
 different dates at different times.
 
-Currently the library does aim for historical accuracy, and will return all
+Currently the library does NOT aim for historical accuracy, and will return all
 "modern day" special days for any year — and completely ignore the fact that
 "Frídagur verslunarmanna in the year 345 BC" makes absolutely no sense.
 
