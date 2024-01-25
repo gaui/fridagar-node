@@ -1,6 +1,6 @@
 {
   "name": "fridagar",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Small library for looking up Icelandic public holidays and other commonly observed 'special' days.",
   "contributors": [
     "Bjarki Gunnarsson (https://github.com/bjarkig82)",
@@ -38,12 +38,11 @@
     "hxmstyle": null,
     "engines": null,
     "sideEffects": false,
-
     "main": "fridagar.js",
     "exports": {
       ".": {
-        "import": "./esm/index.js",
-        "require": "./index.js"
+        "import": "./esm/fridagar.js",
+        "require": "./fridagar.js"
       }
     }
   }
