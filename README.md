@@ -38,6 +38,7 @@ npm install fridagar
   - [type `DayKey`, `HolidayKey`, `SpecialDayKey`](#type-daykey-holidaykey-specialdaykey)
 - [Contributing](#contributing)
 - [Change Log](#change-log)
+- [Other Iceland-Themed Libraries](#other-iceland-themed-libraries)
 
 <!-- prettier-ignore-end -->
 
@@ -388,3 +389,8 @@ PRs are welcoms!
 ## Change Log
 
 See [CHANGELOG.md](https://github.com/gaui/fridagar-node/blob/dev/CHANGELOG.md)
+
+## Other Iceland-Themed Libraries
+
+- [`is-kennitala`](https://npmjs.com/package/is-kennitala) - Best-of-breed kennitala (Icelandic national ID) validation and utility library.
+- [`postnumer`](https://npmjs.com/package/postnumer) - Icelandic post-codes (Póstnúmer) and town/locality names and their National Registry ID codes.
