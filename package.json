@@ -10,19 +10,17 @@
   "license": "ISC",
   "repository": "ssh://git@github.com:gaui/fridagar-node.git",
   "devDependencies": {
-    "@types/bun": "^1.0.0",
+    "@maranomynet/libtools": "^0.1.4",
+    "@types/bun": "^1.0.4",
     "typescript": "^5.3.3"
   },
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "bun install  &&  bun test --watch",
-    "build": "bun install  &&  bun run test  &&  bun build.ts",
-    "test": "bun run check  &&  bun test",
-    "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1",
-    "publish:lib": "bun run build  &&  bun npm-publish.ts",
-    "check": "yarn run check:types",
-    "check:types": "tsc --project tsconfig.json --noEmit --pretty --incremental false"
+    "build": "bun scripts/build.ts",
+    "publish:lib": "bun scripts/publish.ts",
+    "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1"
   },
   "engines": {
     "bun": "^1.0.20",
@@ -30,7 +28,7 @@
     "npm": "9999. Please use bun",
     "yarn": "9999. Please use bun"
   },
-  "dist_package_json": {
+  "npmPackageJson": {
     "type": null,
     "private": null,
     "scripts": null,
@@ -38,7 +36,6 @@
     "hxmstyle": null,
     "engines": null,
     "sideEffects": false,
-
     "main": "fridagar.js",
     "exports": {
       ".": {
