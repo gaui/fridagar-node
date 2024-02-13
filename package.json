@@ -7,27 +7,9 @@
     "Guðjón Jónsson (https://github.com/gaui)",
     "Már Örlygsson <mar.nospam@anomy.net>"
   ],
-  "license": "ISC",
   "repository": "ssh://git@github.com:gaui/fridagar-node.git",
-  "devDependencies": {
-    "@maranomynet/libtools": "^0.1.4",
-    "@types/bun": "^1.0.4",
-    "typescript": "^5.3.3"
-  },
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "bun install  &&  bun test --watch",
-    "build": "bun scripts/build.ts",
-    "publish:lib": "bun scripts/publish.ts",
-    "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1"
-  },
-  "engines": {
-    "bun": "^1.0.20",
-    "node": "9999. Please use bun",
-    "npm": "9999. Please use bun",
-    "yarn": "9999. Please use bun"
-  },
+  "license": "ISC",
+  "dependencies": {},
   "npmPackageJson": {
     "type": null,
     "private": null,
@@ -36,12 +18,26 @@
     "hxmstyle": null,
     "engines": null,
     "sideEffects": false,
-    "main": "fridagar.js",
-    "exports": {
-      ".": {
-        "import": "./esm/index.js",
-        "require": "./index.js"
-      }
-    }
+    "main": "fridagar.js"
+  },
+  "devDependencies": {
+    "@maranomynet/libtools": "^0.1.7",
+    "@types/bun": "^1.0.5",
+    "typescript": "^5.3.3"
+  },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun scripts/dev.ts",
+    "build": "bun scripts/build.ts",
+    "publish:lib": "bun scripts/publish.ts",
+    "prepublishOnly": "echo \"\nRun 'bun run publish:lib' to publish this package\n\n\"  &&  exit 1",
+    "__disabled__format": "bun scripts/format.ts"
+  },
+  "engines": {
+    "bun": "^1.0.26",
+    "node": "9999. Please use bun",
+    "npm": "9999. Please use bun",
+    "yarn": "9999. Please use bun"
   }
 }
