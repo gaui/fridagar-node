@@ -3,6 +3,11 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+
+## 4.2.1
+
+_2024-02-15_
+
 - fix: Returned incorrect dates when called from a time zone west of UTC
 - fix: Rímspilliár were not resolved for the period 2100–2199
 
