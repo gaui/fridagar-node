@@ -130,7 +130,7 @@ const _rimspillirCache: Record<number, 1 | 0> = {
  * certain special days.
  */
 export const rimspillir = (year: number): 1 | 0 => {
-  if ((year < 1900 || year > 2199) && _rimspillirCache[year] === undefined) {
+  if ((year < 1900 || year > 2099) && _rimspillirCache[year] === undefined) {
     const nextYear = year + 1;
     const nextIsLeapYear =
       nextYear % 4 === 0 && (nextYear % 100 !== 0 || nextYear % 400 === 0);
