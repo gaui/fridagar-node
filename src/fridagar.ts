@@ -26,12 +26,12 @@ export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey, DayKey };
  */
 export const getAllDays = function (year?: number, month?: number) {
   if (year == null) {
-    year = new Date().getFullYear();
-  }
+    year = new Date().getUTCFullYear();
+  } 
   var days = calcSpecialDays(year);
 
   if (month != null) {
-    days = days.filter((day) => day.date.getMonth() === month - 1);
+    days = days.filter((day) => day.date.getUTCMonth() === month - 1);
   }
 
   return days.map(cloneInfo);
@@ -41,7 +41,7 @@ export const getAllDays = function (year?: number, month?: number) {
  * Returns a keyed object with Icelandic public holidays and commonly celebrated
  * "special" days for a given year
  *
- * @param  {number}  [year]  Year to get results for. Defaults to the current year
+ * @param  {number}  [year]  Year to get results for. Defaults to the current (local) year
 - * @return {Record<HolidayKey| SpecialDayKey, Holiday | SpecialDay>} Array of day info objects
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#getalldays
@@ -143,10 +143,10 @@ export const workdaysFromDate = (
   let holidayYear: number | undefined;
 
   while (count > 0) {
-    date.setDate(date.getDate() + delta);
-    const wDay = date.getDay();
+    date.setUTCDate(date.getUTCDate() + delta);
+    const wDay = date.getUTCDay();
     const dateTime = date.getTime();
-    const dateYear = date.getFullYear();
+    const dateYear = date.getUTCFullYear();
 
     if (dateYear !== holidayYear) {
       holidayYear = dateYear;

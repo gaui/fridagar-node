@@ -3,6 +3,7 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+- fix: Returned incorrect dates when called from a time zone west of UTC
 
 ## 4.2.0
 

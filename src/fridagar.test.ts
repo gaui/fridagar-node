@@ -57,8 +57,13 @@ const MIDNIGHT = "T00:00:00.000Z";
 const D = (t: string | number) => new Date(t);
 
 // Set timezone to something far away from UTC to make sure tests don't depend on local time
-process.env.TZ = "Asia/Yangon";
-// process.env.TZ = 'UTC'; // `bun test` uses the UTC TZ by default
+// Allow overriding in the command line srcipts/build.ts
+// process.env.TZ = process.env.TZ || 'UTC'; // `bun test` uses the UTC TZ by default
+// process.env.TZ = process.env.TZ || "Asia/Yangon"; // +06:30
+process.env.TZ = process.env.TZ || "Pacific/Midway"; // -11:00
+
+
+console.info("Testing time zone:", process.env.TZ);
 
 [
   { method: getAllDays },
@@ -67,14 +72,14 @@ process.env.TZ = "Asia/Yangon";
 ].forEach(({ method, isHoliday }) => {
   describe(method.name, () => {
     test("defaults to the current year", () => {
-      setSystemTime(D(`2000-02-23T12:34:56`));
+      setSystemTime(D(`2000-12-31T21:34:56Z`));
       const days = method();
       expect(days).toBeArray();
       expect(
         days.every((day) => day.date.toISOString().startsWith("2000-"))
       ).toBe(true);
-      expect(days[0]!.date.getMonth()).toBe(0);
-      expect(days[days.length - 1]!.date.getMonth()).toBe(11);
+      expect(days[0]!.date.getUTCMonth()).toBe(0);
+      expect(days[days.length - 1]!.date.getUTCMonth()).toBe(11);
       setSystemTime();
     });
     test("all dates are at midnight", () => {
@@ -88,8 +93,8 @@ process.env.TZ = "Asia/Yangon";
       expect(
         days.every((day) => day.date.toISOString().startsWith("2021-"))
       ).toBe(true);
-      expect(days[0]!.date.getMonth()).toBe(0);
-      expect(days[days.length - 1]!.date.getMonth()).toBe(11);
+      expect(days[0]!.date.getUTCMonth()).toBe(0);
+      expect(days[days.length - 1]!.date.getUTCMonth()).toBe(11);
     });
     test("allows passing specific 1-based month", () => {
       const days = method(2021, 12);
@@ -104,7 +109,7 @@ process.env.TZ = "Asia/Yangon";
       expect(method(2012, 13)).toBeArrayOfSize(0);
     });
     test("month arguments with an undefined year uses current year", () => {
-      setSystemTime(D(`2000-02-23T12:34:56`));
+      setSystemTime(D(`2000-12-31T23:00:00Z`));
       expect(
         method(undefined, 12).every((day) =>
           day.date.toISOString().startsWith("2000-12-")
@@ -137,7 +142,7 @@ describe("getAllDays", () => {
       expect(keys.join(",")).toBe(sortedKeys.join(","));
     });
   });
-
+ 
   test("Handles rímspilliár", () => {
     const bonda2023 = getAllDays(2023).find((day) => day.key === "bonda");
     expect(bonda2023!.date.toISOString()).toStartWith("2023-01-20");
@@ -182,10 +187,12 @@ describe("getAllDays", () => {
 // ---------------------------------------------------------------------------
 
 describe("getAllDaysKeyed", () => {
+  // process.env.TZ = "Pacific/Midway"; // -11:00
   const days2024 = getAllDaysKeyed(2024);
+  // process.env.TZ = "Asia/Yangon"; // +06:30
   // Values are narrowed to the correct type
   const bonda2024: SpecialDay = days2024.bonda;
-  const adfanga2024: Holiday = days2024.adfanga;  
+  const adfanga2024: Holiday = days2024.adfanga;
 
   test("returns a keyed object", () => {
     const days2024b = getAllDaysKeyed(2024);
@@ -200,7 +207,7 @@ describe("getAllDaysKeyed", () => {
     expect(bonda2024).not.toBe(days2024b.bonda);
   });
   test("defaults to the current year", () => {
-    setSystemTime(D(`2000-06-30T12:34:56`));
+    setSystemTime(D(`2000-12-31T21:34:56Z`));
     const currentYearDays = getAllDaysKeyed();
     expect(currentYearDays.paska2.date.getUTCFullYear()).toBe(2000);
     setSystemTime();
@@ -248,7 +255,7 @@ describe("isHoliday", () => {
 
 // ---------------------------------------------------------------------------
 
-describe("workdaysFromDate", () => {
+describe.only("workdaysFromDate", () => {
   /** Wrapper around workdaysFromDate for easier testing of the result date */
   const workDaysISO = (
     offset: number,

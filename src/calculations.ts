@@ -154,7 +154,7 @@ const findNextWeekDay = (
   targetWDay: number
 ) => {
   const date = new Date(Date.UTC(year, month, day));
-  date.setDate(date.getDate() + ((targetWDay - date.getDay() + 7) % 7));
+  date.setUTCDate(date.getUTCDate() + ((targetWDay - date.getUTCDay() + 7) % 7));
   return date;
 };
 
