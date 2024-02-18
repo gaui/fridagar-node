@@ -18,6 +18,8 @@ All returned dates are in the UTC timezone and set to midnight.
 npm install fridagar
 ```
 
+**Contents:**
+
 <!-- prettier-ignore-start -->
 
 - [Methods](#methods)
