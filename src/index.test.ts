@@ -7,15 +7,15 @@ import {
   getOtherDays,
   getAllDays,
   getAllDaysKeyed,
-} from "./fridagar.js";
-import * as fridagar from "./fridagar.js";
+} from "./index.js";
+import * as fridagar from "./index.js";
 import type {
   Holiday,
   SpecialDay,
   HolidayKey,
   SpecialDayKey,
   DayKey,
-} from "./fridagar.js";
+} from "./index.js";
 
 // ===========================================================================
 // Test Type Signature and Exports

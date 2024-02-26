@@ -18,7 +18,7 @@
     "hxmstyle": null,
     "engines": null,
     "sideEffects": false,
-    "main": "fridagar.js"
+    "main": "index.js"
   },
   "devDependencies": {
     "@maranomynet/libtools": "^0.1.7",

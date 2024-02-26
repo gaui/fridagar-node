@@ -6,6 +6,6 @@
     "noEmit": false,
     "declaration": true
   },
-  "include": ["src/fridagar.ts"]
+  "include": ["src/index.ts", "src/fridagar.ts" ]
 }
  
