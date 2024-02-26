@@ -3,6 +3,11 @@
 ## Upcoming...
 
 - ... <!-- Add new lines here. -->
+
+## 4.2.2
+
+_2024-02-26_
+
 - fix: Add missing index/root `pkg.exports` field 
 
 ## 4.2.1
