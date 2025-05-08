@@ -24,6 +24,7 @@ export type { Holiday, SpecialDay, HolidayKey, SpecialDayKey, DayKey };
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#getalldays
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const getAllDays = function (year?: number, month?: number) {
   if (year == null) {
     year = new Date().getUTCFullYear();
@@ -46,6 +47,7 @@ export const getAllDays = function (year?: number, month?: number) {
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#getalldays
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const getAllDaysKeyed = (year?: number) => {
   const days: Record<string, unknown> = {};
   for (const day of getAllDays(year)) {
@@ -65,6 +67,7 @@ export const getAllDaysKeyed = (year?: number) => {
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#getholidays
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const getHolidays = (year?: number, month?: number) =>
   getAllDays(year, month).filter((day): day is Holiday => day.holiday);
 
@@ -78,6 +81,7 @@ export const getHolidays = (year?: number, month?: number) =>
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#getotherdays
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const getOtherDays = (year?: number, month?: number) =>
   getAllDays(year, month).filter((day): day is SpecialDay => !day.holiday);
 
@@ -91,6 +95,7 @@ export const getOtherDays = (year?: number, month?: number) =>
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#isspecialday
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const isSpecialDay = (date: Date) => {
   let dateMs = date.getTime();
   dateMs -= dateMs % dayMs;
@@ -108,6 +113,7 @@ export const isSpecialDay = (date: Date) => {
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#isholiday
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const isHoliday = (date: Date) => {
   const dayInfo = isSpecialDay(date);
   return dayInfo && dayInfo.holiday ? dayInfo : undefined;
@@ -125,6 +131,7 @@ export const isHoliday = (date: Date) => {
  *
  * @see https://github.com/gaui/fridagar-node/tree/v4#workdaysfromdate
  */
+/*#__NO_SIDE_EFFECTS__*/
 export const workdaysFromDate = (
   days: number,
   refDate?: Date,
