@@ -22,25 +22,26 @@ npm install fridagar
 
 <!-- prettier-ignore-start -->
 
-- [Methods](#methods)
-  - [`getHolidays`](#getholidays)
-  - [`getAllDays`](#getalldays)
-  - [`getAllDaysKeyed`](#getalldayskeyed)
-  - [`getOtherDays`](#getotherdays)
-  - [`isHoliday`](#isholiday)
-  - [`isSpecialDay`](#isspecialday)
-  - [`workdaysFromDate`](#workdaysfromdate)
-- [Supported Days](#supported-days)
-  - [Open Questions](#open-questions)
-    - [Which Days to Include?](#which-days-to-include)
-    - [Historical Accuracy](#historical-accuracy)
-- [Exported types](#exported-types)
-  - [type `Holiday`](#type-holiday)
-  - [type `SpecialDay`](#type-specialday)
-  - [type `DayKey`, `HolidayKey`, `SpecialDayKey`](#type-daykey-holidaykey-specialdaykey)
-- [Contributing](#contributing)
-- [Change Log](#change-log)
-- [Other Iceland-Themed Libraries](#other-iceland-themed-libraries)
+- [Frídagar](#frídagar)
+  - [Methods](#methods)
+    - [`getHolidays`](#getholidays)
+    - [`getAllDays`](#getalldays)
+    - [`getAllDaysKeyed`](#getalldayskeyed)
+    - [`getOtherDays`](#getotherdays)
+    - [`isHoliday`](#isholiday)
+    - [`isSpecialDay`](#isspecialday)
+    - [`workdaysFromDate`](#workdaysfromdate)
+  - [Supported Days](#supported-days)
+    - [Open Questions](#open-questions)
+      - [Which Days to Include?](#which-days-to-include)
+      - [Historical Accuracy](#historical-accuracy)
+  - [Exported types](#exported-types)
+    - [type `Holiday`](#type-holiday)
+    - [type `SpecialDay`](#type-specialday)
+    - [type `DayKey`, `HolidayKey`, `SpecialDayKey`](#type-daykey-holidaykey-specialdaykey)
+  - [Contributing](#contributing)
+  - [Change Log](#change-log)
+  - [Other Iceland-Themed Libraries](#other-iceland-themed-libraries)
 
 <!-- prettier-ignore-end -->
 
@@ -223,7 +224,7 @@ NOTE: The returned date is always set to 00:00:00 UTC.
 
 ## Supported Days
 
-These are the supported days and their identification 
+These are the supported days and their identification
 [keys](#type-daykey-holidaykey-specialdaykey):
 
 - **Nýársdagur** (`nyars`)
@@ -267,16 +268,16 @@ What to include is always subjective.
 
 Currently the list focuses on:
 
-- Official public holidays  (defined in law)
-- Official days of flag-raising ("fánadagar") often to do with national 
+- Official public holidays (defined in law)
+- Official days of flag-raising ("fánadagar") often to do with national
   independence history, etc.
-- Traditional Icelandic cultural "special days", which are a mixture of 
+- Traditional Icelandic cultural "special days", which are a mixture of
   centuries old folk-traditions and (Christian) religious culture.
-- Days that are actively celebrated despite not fulfilling any of the above 
+- Days that are actively celebrated despite not fulfilling any of the above
   criteria. (Like "Hrekkjavaka")
 
-This means "Valentínusardagur" is a bit of an oddball in this list.
-It's inclusion begs the question why we don't include other similar days such 
+This means "Valentínusardagur" is a bit of an oddball in this list (unofficial, non-traditional, and not actively celebrated).
+It's inclusion begs the question why we don't include other similar days such
 as "Mæðradagurinn", "Feðradagurinn", or even "Singles Day".
 Or should it be removed?
 
@@ -290,11 +291,11 @@ The "on the fence" category includes:
 
 #### Historical Accuracy
 
-Example: "Dagur íslenskrar tungu" was first celebrated in 1996. Should 
+Example: "Dagur íslenskrar tungu" was first celebrated in 1996. Should
 `getAllDays(1980)` include it or not?
 
 Problem is that many days don't have a definite starting date, they just faded
-into existence over time. Other days (such as "Mæðradagurinn") have had 
+into existence over time. Other days (such as "Mæðradagurinn") have had
 different dates at different times.
 
 Currently the library does NOT aim for historical accuracy, and will return all
@@ -320,7 +321,7 @@ const xmasEve2017: Holiday = {
   description: "Aðfangadagur",
   key: "adfanga", // stable identifier for this holiday
   holiday: true,
-  halfDay: true,
+  halfDay: true, // Aðfangadagur is not a holiday in the moening.
 };
 ```
 
